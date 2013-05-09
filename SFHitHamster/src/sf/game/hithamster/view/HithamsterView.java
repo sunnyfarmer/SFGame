@@ -1,6 +1,8 @@
 package sf.game.hithamster.view;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,8 +16,11 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 	private RENDER_STATE renderState = RENDER_STATE.RENDER_STATE_STOP;
 	private HithamsterRenderThread renderThread = null;
 
-	public HithamsterView(Context context) {
-		super(context);
+	public HithamsterView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+
+		SurfaceHolder holder = this.getHolder();
+		holder.addCallback(this);
 	}
 
 	@Override
@@ -48,7 +53,7 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 			super.run();
 			while (renderState==RENDER_STATE.RENDER_STATE_START) {
 				java.util.Date dt = new java.util.Date();
-				Log.d(TAG, String.format("%l", dt.getTime()));
+				Log.d(TAG, String.format("%d", dt.getTime()));
 			}
 		}
 	}
