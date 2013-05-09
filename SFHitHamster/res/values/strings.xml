@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">名人都要打</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- 开始菜单 -->
+    <string name="menu_start_game">开始游戏</string>
+    <string name="menu_exit_game">退出游戏</string>
+    <string name="menu_sound_enable">开启声音</string>
+    <string name="menu_sound_disable">关闭声音</string>
+    <string name="menu_shake_enable">开启震动</string>
+    <string name="menu_shake_disable">关闭震动</string>
+</resources>
