@@ -7,10 +7,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.Toast;
 
-public class HithamsterView extends SurfaceView implements SurfaceHolder.Callback{
+public class HithamsterView extends SurfaceView implements SurfaceHolder.Callback, OnTouchListener{
 	public static final String TAG = "HithamsterView";
 	public static enum RENDER_STATE {
 		RENDER_STATE_START,
@@ -54,6 +58,7 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		return this.renderThread;
 	}
 
+	//刷新线程
 	private class HithamsterRenderThread extends Thread {
 		private SurfaceHolder holder = null;
 		private Context context = null;
@@ -78,5 +83,10 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 				}
 			}
 		}
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		return HithamsterView.this.gc.onTouch(v, event);
 	}
 }

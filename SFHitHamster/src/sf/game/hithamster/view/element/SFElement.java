@@ -13,8 +13,8 @@ import android.view.Display;
 
 public abstract class SFElement {
 	protected Context context = null;
-	protected int width = 0;
-	protected int height = 0;
+	protected int contextWidth = 0;
+	protected int contextHeight = 0;
 	protected Paint paint = new Paint();
 
 	@SuppressLint("NewApi")
@@ -26,11 +26,11 @@ public abstract class SFElement {
 		if (apiLevel >= 13) {
 			Point point = new Point();
 			display.getSize(point);
-			this.width = point.x;
-			this.height = point.y;
+			this.contextWidth = point.x;
+			this.contextHeight = point.y;
 		} else {
-			this.width = display.getWidth();
-			this.height = display.getHeight();
+			this.contextWidth = display.getWidth();
+			this.contextHeight = display.getHeight();
 		}
 
 		this.paint.setAntiAlias(true);

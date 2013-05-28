@@ -16,9 +16,14 @@ public class HithamsterActivity extends Activity {
 	    this.setContentView(R.layout.activity_hithamster);
 
 	    this.findView();
+	    this.setListener();
 	}
 
 	private void findView() {
 		this.surfaceView = (HithamsterView) this.findViewById(R.id.hithamsterView);
+	}
+
+	private void setListener() {
+		this.surfaceView.setOnTouchListener(this.surfaceView);
 	}
 }

@@ -51,10 +51,10 @@ public class HamsterHole extends SFElement {
 		this.display(canvas);
 	}
 
-	public float width() {
+	public float getWidth() {
 		return this.bitmapHamsterHoleAbove.getWidth();
 	}
-	public float height() {
+	public float getHeight() {
 		return this.bitmapHamsterHoleAbove.getHeight();
 	}
 

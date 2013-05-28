@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 import sf.game.hithamster.view.element.Background;
 import sf.game.hithamster.view.element.HamsterHole;
+import sf.util.SFFloatPoint;
 import sf.util.SFMath;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Toast;
 
 public class GameController {
 	public static final String TAG = "GameController";
@@ -94,6 +98,19 @@ public class GameController {
 		this.getElBackground().display(canvas, backgroundCopy);
 	}
 
+	public boolean onTouch(View v, MotionEvent event) {
+		float x = event.getX();
+		float y = event.getY();
+		this.elBackground.getHam().setScreenX(x);
+		this.elBackground.getHam().setScreenY(y);
+
+		this.hamsterController.hitHamsters(
+				this.elBackground.screenToBackgroundPoint(
+						new SFFloatPoint(x, y)		
+				));
+		return false;
+	}
+
 	private class HamsterController {
 		public static final int HAMSTER_NUMBER = 6;
 		private ArrayList<ModelHamster> hamsterArray = null;
@@ -130,6 +147,11 @@ public class GameController {
 			//检查地鼠状态
 			for (ModelHamster modelHamster : this.getHamsterArray()) {
 				modelHamster.checkState();
+			}
+		}
+		public void hitHamsters(SFFloatPoint point) {
+			for (ModelHamster modelHamster : this.getHamsterArray()) {
+				modelHamster.isHitted(point);
 			}
 		}
 

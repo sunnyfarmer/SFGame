@@ -3,6 +3,7 @@ package sf.game.hithamster.model;
 import java.util.Date;
 
 import sf.game.hithamster.view.element.HamsterHole;
+import sf.util.SFFloatPoint;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -46,6 +47,9 @@ public class ModelHamster {
 
 	private Context context = null;
 	private HamsterHole hamsterHole = null;
+
+	private float x;
+	private float y;
 
 	public ModelHamster(Context context) {
 		this.context = context;
@@ -102,9 +106,17 @@ public class ModelHamster {
 			}
 		}
 	}
+	//检查是否打中
+	public void isHitted(SFFloatPoint point) {
+		if (point.isInRect(x, y, this.hamsterHole.getWidth(), this.hamsterHole.getHeight())) {
+			this.hurt();
+		}
+	}
 
 	//渲染
 	public void render(Canvas canvas, float x, float y) {
+		this.x = x;
+		this.y = y;
 		this.hamsterHole.display(canvas, x, y);
 	}
 
