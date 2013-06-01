@@ -6,6 +6,7 @@ import sf.util.SFLogger;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -58,10 +59,12 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		return this.renderThread;
 	}
 
-	//刷新线程
+	//游戏线程
 	private class HithamsterRenderThread extends Thread {
 		private SurfaceHolder holder = null;
 		private Context context = null;
+		private int fps = 0;
+		private long fpsTime = 0;
 		public HithamsterRenderThread(SurfaceHolder holder, Context context) {
 			this.holder = holder;
 			this.context = context;
@@ -72,15 +75,25 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 			while (renderState==RENDER_STATE.RENDER_STATE_START) {
 				Canvas canvas = this.holder.lockCanvas();
 
+				//控制游戏流程
 				HithamsterView.this.gc.gameProcess();
+				//控制游戏渲染
 				HithamsterView.this.gc.render(canvas);
 
 				this.holder.unlockCanvasAndPost(canvas);
-				try {
-					Thread.sleep(33);
-				} catch (InterruptedException e) {
-					SFLogger.e(TAG, e.getMessage(), e);
-				}
+
+				//计算fps
+				this.calculateFps();
+			}
+		}
+		private void calculateFps() {
+			java.util.Date d = new java.util.Date();
+			if (d.getTime() - fpsTime > 1000) {
+				this.fpsTime = d.getTime();
+				SFLogger.i(TAG, String.format("fps : %d", fps));
+				this.fps = 0;
+			} else {
+				this.fps++;
 			}
 		}
 	}

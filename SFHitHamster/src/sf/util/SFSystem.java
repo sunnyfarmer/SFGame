@@ -1,14 +1,18 @@
 package sf.util;
 
 import android.content.Context;
-import android.os.Build;
+import android.os.Vibrator;
 import android.os.Build.VERSION;
-import android.provider.Settings.SettingNotFoundException;
 
 public class SFSystem {
 
 	public static int apiLevel(Context context) {
 		int versioncode = VERSION.SDK_INT;
 		return versioncode;
+	}
+
+	public static void vibrate(Context context, long milliseconds) {
+		Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+		vibrator.vibrate(milliseconds);
 	}
 }

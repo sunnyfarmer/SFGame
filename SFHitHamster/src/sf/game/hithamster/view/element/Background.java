@@ -2,6 +2,7 @@ package sf.game.hithamster.view.element;
 
 import sf.game.hithamster.R;
 import sf.util.SFFloatPoint;
+import sf.util.SFLogger;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,8 +11,11 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class Background extends SFElement{
+	public static final String TAG = "Background";
+
 	private Bitmap bitmapBackground = null;
 	private Ham ham = null;
+	private Timebar timebar = null;
 
 	@SuppressLint("NewApi")
 	public Background(Context context) {
@@ -28,16 +32,20 @@ public class Background extends SFElement{
 		}
 		return this.ham;
 	}
+	public Timebar getTimebar() {
+		if (this.timebar==null) {
+			this.timebar = new Timebar(this.context);
+		}
+		return this.timebar;
+	}
 
 	@Override
-	public void display(Canvas canvas) {
-//		Bitmap bitmapCopy = this.bitmapBackground.copy(Bitmap.Config.ARGB_8888, true);
-//
-//		this.ham.display(canvas);
-//
-//		Rect srcRect = new Rect(0, 0, bitmapCopy.getWidth(), bitmapCopy.getHeight());
-//		Rect dstRect = new Rect(0, 0, this.contextWidth, this.contextHeight);
-//		canvas.drawBitmap(bitmapCopy, srcRect, dstRect, paint);
+	public void display(Canvas canvas){
+		try {
+			throw new Exception("弃用了");
+		} catch (Exception e) {
+			SFLogger.e(TAG, "Background.display(Canvas canvas)已经弃用", e);
+		}
 	}
 
 	public Bitmap getBackgroundCopy() {
@@ -47,10 +55,15 @@ public class Background extends SFElement{
 
 	public void display(Canvas canvas, Bitmap backgroundCopy) {
 		Canvas canvasOfBackground = new Canvas(backgroundCopy);
+		//锤子
 		float xScale = backgroundCopy.getWidth() / (1.0f * this.contextWidth);
 		float yScale = backgroundCopy.getHeight() / (1.0f * this.contextHeight);
 		this.getHam().display(canvasOfBackground, xScale, yScale);
 
+		//时间栏
+		this.getTimebar().display(canvasOfBackground, 50, 20);
+
+		//将背景渲染到屏幕
 		Rect srcRect = new Rect(0, 0, backgroundCopy.getWidth(), backgroundCopy.getHeight());
 		Rect dstRect = new Rect(0, 0, this.contextWidth, this.contextHeight);
 		canvas.drawBitmap(backgroundCopy, srcRect, dstRect, paint);		

@@ -14,8 +14,8 @@ public class Ham extends SFElement {
 	private Bitmap bitmapHam = null;
 	private float x = 0.0f;
 	private float y = 0.0f;
-	private float screenX = 0.0f;
-	private float screenY = 0.0f;
+	private float screenX = -10000.0f;
+	private float screenY = -10000.0f;
 
 	public Ham(Context context) {
 		super(context);

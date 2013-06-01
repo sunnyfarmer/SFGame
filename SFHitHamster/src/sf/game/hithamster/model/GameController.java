@@ -3,35 +3,30 @@ package sf.game.hithamster.model;
 import java.util.ArrayList;
 
 import sf.game.hithamster.view.element.Background;
-import sf.game.hithamster.view.element.HamsterHole;
 import sf.util.SFFloatPoint;
 import sf.util.SFMath;
+import sf.util.SFSystem;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 public class GameController {
 	public static final String TAG = "GameController";
-	public static enum GAME_STATE {
-		GAME_STATE_READY,
-		GAME_STATE_PLAY,//游戏开始
-		GAME_STATE_PAUSE,//游戏暂停
-		GAME_STATE_FINISH//游戏结束
-	};
 
-	private GAME_STATE state = GAME_STATE.GAME_STATE_PLAY;
 	private Context context = null;
 
 	private Background elBackground = null;
 
 	private HamsterController hamsterController = null;
 
+	private GameProcessController gameProcessController = null;
+
 	public GameController(Context context) {
 		this.context = context;
+		this.gameProcessController = new GameProcessController();
 	}
 
 	public Background getElBackground() {
@@ -48,21 +43,12 @@ public class GameController {
 		return this.hamsterController;
 	}
 
-	public void begin() {
-		this.state = GAME_STATE.GAME_STATE_PLAY;
-	}
-	public void pause() {
-		this.state = GAME_STATE.GAME_STATE_PAUSE;
-	}
-	public void finish() {
-		this.state = GAME_STATE.GAME_STATE_FINISH;
-	}
-
 	public void gameProcess() {
-		if (this.state != GAME_STATE.GAME_STATE_PLAY) {
+		if (this.gameProcessController.getGameState() != GameProcessController.GAME_STATE.GAME_STATE_PLAY) {
 			return;
 		}
-
+		//控制游戏时间
+		this.gameProcessController.process();
 		//控制地鼠的运动
 		this.getHamsterController().controlHamsters();
 	}
@@ -94,6 +80,7 @@ public class GameController {
 				yOffset += yGap;
 			}
 		}
+		this.elBackground.getTimebar().setPercent(this.gameProcessController.getGameProcess());
 
 		this.getElBackground().display(canvas, backgroundCopy);
 	}
@@ -136,12 +123,14 @@ public class GameController {
 			if (now-this.lastActiveTime > ACTIVE_TIME_GAP) {
 				//获得HIDED地鼠列表
 				ArrayList<ModelHamster> hidedList = this.getHidedHamster();
-				//随机冒出地鼠
-				int randomIndex = SFMath.randomInt(0, hidedList.size()-1);
-				ModelHamster modelHamster = hidedList.get(randomIndex);
-				modelHamster.jump();
-
-				this.lastActiveTime = now;
+				if (hidedList.size() >= 1) {
+					//随机冒出地鼠
+					int randomIndex = SFMath.randomInt(0, hidedList.size()-1);
+					ModelHamster modelHamster = hidedList.get(randomIndex);
+					modelHamster.jump();
+	
+					this.lastActiveTime = now;
+				}
 			}
 
 			//检查地鼠状态
@@ -151,7 +140,10 @@ public class GameController {
 		}
 		public void hitHamsters(SFFloatPoint point) {
 			for (ModelHamster modelHamster : this.getHamsterArray()) {
-				modelHamster.isHitted(point);
+				if (modelHamster.isHitted(point)) {
+					SFSystem.vibrate(GameController.this.context, 50);
+					break;
+				}
 			}
 		}
 

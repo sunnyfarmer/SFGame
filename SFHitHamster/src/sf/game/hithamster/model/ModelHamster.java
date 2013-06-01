@@ -107,10 +107,16 @@ public class ModelHamster {
 		}
 	}
 	//检查是否打中
-	public void isHitted(SFFloatPoint point) {
-		if (point.isInRect(x, y, this.hamsterHole.getWidth(), this.hamsterHole.getHeight())) {
-			this.hurt();
+	public boolean isHitted(SFFloatPoint point) {
+		if (this.getState()==ModelHamster.HAMSTER_STATE.LAUGHING ||
+				this.getState()==ModelHamster.HAMSTER_STATE.JUMPING ||
+				this.getState()==ModelHamster.HAMSTER_STATE.HIDING) {
+			if (point.isInRect(x, y, this.hamsterHole.getWidth(), this.hamsterHole.getHeight())) {
+				this.hurt();
+				return true;
+			}
 		}
+		return false;
 	}
 
 	//渲染
