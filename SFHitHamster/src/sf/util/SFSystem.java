@@ -1,5 +1,6 @@
 package sf.util;
 
+import sf.game.hithamster.model.GameSetting;
 import android.content.Context;
 import android.os.Vibrator;
 import android.os.Build.VERSION;
@@ -12,7 +13,9 @@ public class SFSystem {
 	}
 
 	public static void vibrate(Context context, long milliseconds) {
-		Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-		vibrator.vibrate(milliseconds);
+		if (GameSetting.shakeSetting()) {
+			Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+			vibrator.vibrate(milliseconds);
+		}
 	}
 }

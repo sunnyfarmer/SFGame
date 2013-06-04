@@ -11,4 +11,5 @@
     <string name="menu_sound_disable">关闭声音</string>
     <string name="menu_shake_enable">开启震动</string>
     <string name="menu_shake_disable">关闭震动</string>
+    <string name="content">content</string>
 </resources>

@@ -15,7 +15,7 @@ public class Hamster extends SFElement {
 	private float y = 0.0f;
 
 	private int step = 0;
-	private float stepPixel = 10.0f;
+	private float stepPixel = 25.0f;
 
 	private ModelHamster modelHamster = null;
 
@@ -68,7 +68,7 @@ public class Hamster extends SFElement {
 		case WOUND:
 		case DEAD:
 			step=0;
-			yOffset = 0.0f;
+			yOffset = -10.0f;
 			matrix.postTranslate(xOffset, yOffset);
 			canvas.drawBitmap(this.bitmapHamsterWound, matrix, paint);
 			break;

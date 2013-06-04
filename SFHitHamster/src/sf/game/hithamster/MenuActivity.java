@@ -1,18 +1,21 @@
 package sf.game.hithamster;
 
 import sf.game.hithamster.model.GameSetting;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.app.Activity;
 import android.content.Intent;
 
 public class MenuActivity extends Activity {
-	private Button btnStartGame = null;
-	private Button btnExitGame = null;
-	private Button btnSoundToggle = null;
-	private Button btnShakeToggle = null;
+	private ImageView ivSound = null;
+	private ImageView ivShake = null;
+	private boolean isGameTriggered = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,11 @@ public class MenuActivity extends Activity {
 		this.findView();
 		this.setListener();
 	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		this.isGameTriggered = false;
+	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
@@ -30,51 +38,48 @@ public class MenuActivity extends Activity {
 	}
 
 	private void findView() {
-		this.btnStartGame = (Button)this.findViewById(R.id.btnStartGame);
-		this.btnExitGame = (Button)this.findViewById(R.id.btnExitGame);
+		this.ivSound = (ImageView) this.findViewById(R.id.ivSound);
+		this.ivShake = (ImageView) this.findViewById(R.id.ivShake);
 
-		this.btnSoundToggle = (Button)this.findViewById(R.id.btnSoundToggle);
 		this.setSoundSettingDisplay();
-		this.btnShakeToggle = (Button)this.findViewById(R.id.btnShakeToggle);
 		this.setShakeSettingDisplay();
 	}
 	private void setListener() {
-		this.btnStartGame.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//start game
-				MenuActivity.this.startGame();
-			}
-		});
-		this.btnExitGame.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//exit game
-				MenuActivity.this.exitGame();
-			}
-		});
-		this.btnSoundToggle.setOnClickListener(new OnClickListener() {
+		this.ivSound.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//toggle sound setting
 				MenuActivity.this.toggleSoundSetting();
 			}
 		});
-		this.btnShakeToggle.setOnClickListener(new OnClickListener() {
+		this.ivShake.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//toggle shake setting
 				MenuActivity.this.toggleShakeSetting();
 			}
 		});
+
+		this.getWindow().getDecorView().setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				MenuActivity.this.startGame();
+				return false;
+			}
+		});
 	}
 
 	private void startGame() {
-		Intent intent = new Intent(this, HithamsterActivity.class);
-		this.startActivity(intent);
+		if (!isGameTriggered) {
+			Intent intent = new Intent(this, HithamsterActivity.class);
+			this.startActivity(intent);
+			isGameTriggered = true;
+		}
 	}
 	private void exitGame() {
-		
+		//Test
+		MediaPlayer mp = MediaPlayer.create(this, R.raw.viva_la_vida);
+		mp.start();
 	}
 	private void toggleSoundSetting() {
 		GameSetting.toggleSoundSetting();
@@ -82,9 +87,9 @@ public class MenuActivity extends Activity {
 	}
 	private void setSoundSettingDisplay() {
 		if (GameSetting.soundSetting()) {
-			this.btnSoundToggle.setText(R.string.menu_sound_disable);
+			this.ivSound.setImageResource(R.drawable.sound_enable);
 		} else {
-			this.btnSoundToggle.setText(R.string.menu_sound_enable);
+			this.ivSound.setImageResource(R.drawable.sound_disable);
 		}
 	}
 	private void toggleShakeSetting() {
@@ -93,9 +98,9 @@ public class MenuActivity extends Activity {
 	}
 	private void setShakeSettingDisplay() {
 		if (GameSetting.shakeSetting()) {
-			this.btnShakeToggle.setText(R.string.menu_shake_disable);
+			this.ivShake.setImageResource(R.drawable.shake_enable);
 		} else {
-			this.btnShakeToggle.setText(R.string.menu_shake_enable);
+			this.ivShake.setImageResource(R.drawable.shake_disable);
 		}
 	}
 }

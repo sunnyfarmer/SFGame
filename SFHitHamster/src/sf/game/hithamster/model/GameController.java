@@ -104,7 +104,7 @@ public class GameController {
 
 		//上次弹出地鼠的时间
 		private long lastActiveTime = 0;
-		private static final long ACTIVE_TIME_GAP = 2000;
+		private static final long ACTIVE_TIME_GAP = 1000;
 
 		public ArrayList<ModelHamster> getHamsterArray() {
 			if (this.hamsterArray == null || this.hamsterArray.size() != HAMSTER_NUMBER) {
