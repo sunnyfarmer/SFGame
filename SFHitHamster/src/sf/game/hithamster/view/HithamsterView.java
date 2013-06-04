@@ -1,19 +1,17 @@
 package sf.game.hithamster.view;
 
+import sf.game.hithamster.R;
 import sf.game.hithamster.model.GameController;
-import sf.game.hithamster.view.element.Background;
 import sf.util.SFLogger;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.os.Vibrator;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Toast;
 
 public class HithamsterView extends SurfaceView implements SurfaceHolder.Callback, OnTouchListener{
 	public static final String TAG = "HithamsterView";
@@ -26,6 +24,9 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 
 	private GameController gc = null;
 
+	//Test
+	private MediaPlayer mp = null;
+
 	public HithamsterView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
@@ -33,6 +34,8 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		holder.addCallback(this);
 
 		this.gc = new GameController(context);
+
+		mp = MediaPlayer.create(this.getContext(), R.raw.viva_la_vida);
 	}
 
 	@Override
@@ -40,6 +43,8 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		SFLogger.d(TAG, "surfaceCreated");
 		this.renderState = RENDER_STATE.RENDER_STATE_START;
 		this.renderThread().start();
+
+		mp.start();
 	}
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
@@ -73,6 +78,14 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		public void run() {
 			super.run();
 			while (renderState==RENDER_STATE.RENDER_STATE_START) {
+
+				//循环播放 音乐
+				int length = mp.getDuration();
+				if (mp.getCurrentPosition() == length-10) {
+					mp.seekTo(0);
+				}
+				SFLogger.i(TAG, String.format("music : %d, %d", mp.getCurrentPosition(), length));
+				
 				Canvas canvas = this.holder.lockCanvas();
 
 				//控制游戏流程

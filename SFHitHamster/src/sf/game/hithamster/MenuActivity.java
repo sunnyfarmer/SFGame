@@ -77,9 +77,7 @@ public class MenuActivity extends Activity {
 		}
 	}
 	private void exitGame() {
-		//Test
-		MediaPlayer mp = MediaPlayer.create(this, R.raw.viva_la_vida);
-		mp.start();
+
 	}
 	private void toggleSoundSetting() {
 		GameSetting.toggleSoundSetting();

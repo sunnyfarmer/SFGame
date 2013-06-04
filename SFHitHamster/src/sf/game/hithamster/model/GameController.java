@@ -44,11 +44,12 @@ public class GameController {
 	}
 
 	public void gameProcess() {
+		//控制游戏时间
+		this.gameProcessController.process();
+
 		if (this.gameProcessController.getGameState() != GameProcessController.GAME_STATE.GAME_STATE_PLAY) {
 			return;
 		}
-		//控制游戏时间
-		this.gameProcessController.process();
 		//控制地鼠的运动
 		this.getHamsterController().controlHamsters();
 	}
@@ -104,7 +105,6 @@ public class GameController {
 
 		//上次弹出地鼠的时间
 		private long lastActiveTime = 0;
-		private static final long ACTIVE_TIME_GAP = 1000;
 
 		public ArrayList<ModelHamster> getHamsterArray() {
 			if (this.hamsterArray == null || this.hamsterArray.size() != HAMSTER_NUMBER) {
@@ -120,7 +120,7 @@ public class GameController {
 		public void controlHamsters() {
 			//每秒冒出1个地鼠
 			long now = new java.util.Date().getTime();
-			if (now-this.lastActiveTime > ACTIVE_TIME_GAP) {
+			if (now-this.lastActiveTime > GameController.this.gameProcessController.getActiveTimeGap()) {
 				//获得HIDED地鼠列表
 				ArrayList<ModelHamster> hidedList = this.getHidedHamster();
 				if (hidedList.size() >= 1) {

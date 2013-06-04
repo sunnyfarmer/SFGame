@@ -13,8 +13,14 @@ public class GameProcessController {
 	private int processCount = 0;
 	private static final int PROCESS_SUM = 1000;
 
+	private int level = 1;
+	private long active_time_gap = 1000;
+
 	public GAME_STATE getGameState() {
 		return this.state;
+	}
+	public long getActiveTimeGap() {
+		return this.active_time_gap;
 	}
 	public void begin() {
 		this.state = GAME_STATE.GAME_STATE_PLAY;
@@ -24,6 +30,11 @@ public class GameProcessController {
 	}
 	public void finish() {
 		this.state = GAME_STATE.GAME_STATE_FINISH;
+	}
+	public void gotoNextLevel() {
+		this.level++;
+		this.active_time_gap = this.active_time_gap /this.level;
+		this.begin();
 	}
 
 	public void process() {
@@ -40,6 +51,7 @@ public class GameProcessController {
 			}
 			break;
 		case GAME_STATE_FINISH:
+			this.gotoNextLevel();
 			break;
 		default:
 			break;
