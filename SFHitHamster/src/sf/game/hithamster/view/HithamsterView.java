@@ -1,11 +1,9 @@
 package sf.game.hithamster.view;
 
-import sf.game.hithamster.R;
 import sf.game.hithamster.model.GameController;
 import sf.util.SFLogger;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -24,9 +22,6 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 
 	private GameController gc = null;
 
-	//Test
-	private MediaPlayer mp = null;
-
 	public HithamsterView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
@@ -34,8 +29,6 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		holder.addCallback(this);
 
 		this.gc = new GameController(context);
-
-		mp = MediaPlayer.create(this.getContext(), R.raw.viva_la_vida);
 	}
 
 	@Override
@@ -44,7 +37,6 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		this.renderState = RENDER_STATE.RENDER_STATE_START;
 		this.renderThread().start();
 
-		mp.start();
 	}
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
@@ -64,28 +56,22 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		return this.renderThread;
 	}
 
+	public void setRenderState(RENDER_STATE state) {
+		this.renderState = state;
+	}
+
 	//游戏线程
 	private class HithamsterRenderThread extends Thread {
 		private SurfaceHolder holder = null;
-		private Context context = null;
 		private int fps = 0;
 		private long fpsTime = 0;
 		public HithamsterRenderThread(SurfaceHolder holder, Context context) {
 			this.holder = holder;
-			this.context = context;
 		}
 		@Override
 		public void run() {
 			super.run();
 			while (renderState==RENDER_STATE.RENDER_STATE_START) {
-
-				//循环播放 音乐
-				int length = mp.getDuration();
-				if (mp.getCurrentPosition() == length-10) {
-					mp.seekTo(0);
-				}
-				SFLogger.i(TAG, String.format("music : %d, %d", mp.getCurrentPosition(), length));
-				
 				Canvas canvas = this.holder.lockCanvas();
 
 				//控制游戏流程
@@ -97,6 +83,12 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 
 				//计算fps
 				this.calculateFps();
+
+				try {
+					Thread.sleep(33);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		private void calculateFps() {

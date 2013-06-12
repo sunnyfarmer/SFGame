@@ -2,6 +2,7 @@ package sf.game.hithamster.model;
 
 import java.util.Date;
 
+import sf.game.hithamster.model.GameController.OnLeaveListener;
 import sf.game.hithamster.view.element.HamsterHole;
 import sf.util.SFFloatPoint;
 
@@ -51,6 +52,8 @@ public class ModelHamster {
 	private float x;
 	private float y;
 
+	private OnLeaveListener onLeaveListener = null;
+
 	public ModelHamster(Context context) {
 		this.context = context;
 		this.hamsterHole = new HamsterHole(context, this);
@@ -86,6 +89,9 @@ public class ModelHamster {
 	public void leave() {
 		this.state = HAMSTER_STATE.HIDED;
 		this.freshStateTime();
+		if (this.onLeaveListener!=null) {
+			this.onLeaveListener.onLeave(this);
+		}
 	}
 	//重生
 	public void reborn() {
@@ -128,5 +134,9 @@ public class ModelHamster {
 
 	public HAMSTER_STATE getState () {
 		return this.state;
+	}
+
+	public void setOnLeaveListener(OnLeaveListener listener) {
+		this.onLeaveListener = listener;
 	}
 }

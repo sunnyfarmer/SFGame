@@ -99,7 +99,11 @@ public class GameController {
 		return false;
 	}
 
-	private class HamsterController {
+	public interface OnLeaveListener {
+		public void onLeave(ModelHamster modelHamster);
+	}
+
+	private class HamsterController implements OnLeaveListener{
 		public static final int HAMSTER_NUMBER = 6;
 		private ArrayList<ModelHamster> hamsterArray = null;
 
@@ -111,6 +115,7 @@ public class GameController {
 				this.hamsterArray = new ArrayList<ModelHamster>();
 				for (int cot = 0; cot < HAMSTER_NUMBER; cot++) {
 					ModelHamster modelHamster = new ModelHamster(GameController.this.context);
+					modelHamster.setOnLeaveListener(this);
 					this.hamsterArray.add(modelHamster);
 				}
 			}
@@ -141,6 +146,7 @@ public class GameController {
 		public void hitHamsters(SFFloatPoint point) {
 			for (ModelHamster modelHamster : this.getHamsterArray()) {
 				if (modelHamster.isHitted(point)) {
+					GameController.this.elBackground.hamsterHitNumber++;
 					SFSystem.vibrate(GameController.this.context, 50);
 					break;
 				}
@@ -151,6 +157,7 @@ public class GameController {
 		 * 获得露出来的地鼠的数量
 		 * @return
 		 */
+		@SuppressWarnings("unused")
 		public int laughingHamsterCount() {
 			int count = 0;
 			for (ModelHamster modelHamster : this.getHamsterArray()) {
@@ -172,6 +179,11 @@ public class GameController {
 				}
 			}
 			return hidedList;
+		}
+
+		@Override
+		public void onLeave(ModelHamster modelHamster) {
+			GameController.this.elBackground.hamsterMiss++;
 		}
 	}
 }

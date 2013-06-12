@@ -1,6 +1,9 @@
 package sf.game.hithamster.model;
 
+import sf.util.SFLogger;
+
 public class GameProcessController {
+	public static final String TAG = "GameProcessController";
 	public static enum GAME_STATE {
 		GAME_STATE_READY,
 		GAME_STATE_PLAY,//游戏开始
@@ -14,7 +17,9 @@ public class GameProcessController {
 	private static final int PROCESS_SUM = 1000;
 
 	private int level = 1;
-	private long active_time_gap = 1000;
+	private static long[] ACTIVE_TIME_GAP_LIST = {1000, 900, 800, 700, 600};
+	private long active_time_gap = ACTIVE_TIME_GAP_LIST[0];
+
 
 	public GAME_STATE getGameState() {
 		return this.state;
@@ -23,6 +28,7 @@ public class GameProcessController {
 		return this.active_time_gap;
 	}
 	public void begin() {
+		this.processCount = 0;
 		this.state = GAME_STATE.GAME_STATE_PLAY;
 	}
 	public void pause() {
@@ -31,9 +37,18 @@ public class GameProcessController {
 	public void finish() {
 		this.state = GAME_STATE.GAME_STATE_FINISH;
 	}
+	private static long getTimeGapByLevel(int level) {
+		//level 	: 0   1   2   3   4   5   6   7   8   9   10...
+		//gap index : 0   1   2   3   2   1   0   1   2   3   2 ...
+		int temp = (level-1)%((ACTIVE_TIME_GAP_LIST.length-1)*2);// n%6 得到temp为[0,5]
+		int gapIndex = temp>=ACTIVE_TIME_GAP_LIST.length ? 
+					(ACTIVE_TIME_GAP_LIST.length-1)*2 - temp :
+					temp;
+		return ACTIVE_TIME_GAP_LIST[gapIndex];
+	}
 	public void gotoNextLevel() {
 		this.level++;
-		this.active_time_gap = this.active_time_gap /this.level;
+		this.active_time_gap = getTimeGapByLevel(this.level);//this.active_time_gap /this.level;
 		this.begin();
 	}
 

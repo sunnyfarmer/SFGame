@@ -50,7 +50,7 @@ public class Timebar extends SFElement {
 		matrixOfGreenbar.setTranslate(-this.bitmapTimebarBgGreenbar.getWidth() * (MAX_PERCENT-percent) / MAX_PERCENT, 0);
 		canvasOfBlackbar.drawBitmap(this.bitmapTimebarBgGreenbar, matrixOfGreenbar, paint);
 		Matrix matrixOfBlackbar = new Matrix();
-		matrixOfBlackbar.setTranslate(27, 45);
+		matrixOfBlackbar.setTranslate(20, 30);
 		canvasOfBg.drawBitmap(blackbarCopy, matrixOfBlackbar, paint);
 
 		//渲染timebar apple

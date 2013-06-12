@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 
 public class Background extends SFElement{
 	public static final String TAG = "Background";
@@ -16,11 +17,15 @@ public class Background extends SFElement{
 	private Bitmap bitmapBackground = null;
 	private Ham ham = null;
 	private Timebar timebar = null;
+	public int hamsterHitNumber = 0;
+	public int hamsterMiss = 0;
+	private Typeface tp = null;
 
 	@SuppressLint("NewApi")
 	public Background(Context context) {
 		super(context);
 		this.bitmapBackground = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.background);
+		this.tp = Typeface.createFromAsset(this.context.getAssets(), "FengardoNeue_Black.otf");
 	}
 
 	public Bitmap getBitmapBackground() {
@@ -63,10 +68,16 @@ public class Background extends SFElement{
 		//时间栏
 		this.getTimebar().display(canvasOfBackground, 50, 20);
 
+		//画上分数
+		this.paint.setARGB(255, 255, 255, 255);
+		this.paint.setTextSize(50);
+		this.paint.setTypeface(this.tp);
+		canvasOfBackground.drawText(String.format("中 %d   失%d", this.hamsterHitNumber, this.hamsterMiss), 400, 60, this.paint);
+
 		//将背景渲染到屏幕
 		Rect srcRect = new Rect(0, 0, backgroundCopy.getWidth(), backgroundCopy.getHeight());
 		Rect dstRect = new Rect(0, 0, this.contextWidth, this.contextHeight);
-		canvas.drawBitmap(backgroundCopy, srcRect, dstRect, paint);		
+		canvas.drawBitmap(backgroundCopy, srcRect, dstRect, paint);
 	}
 
 	/**
