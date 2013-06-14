@@ -18,7 +18,7 @@ public class GameSound {
 	}
 
 	public void init() {
-		if (GameSetting.soundSetting()) {
+		if (GameSetting.soundSetting(this.context)) {
 			// 初始化声音资源
 			mp = MediaPlayer.create(this.context, R.raw.lgbe_na_shit_);
 			mp.setOnCompletionListener(new OnCompletionListener() {
@@ -32,13 +32,18 @@ public class GameSound {
 	}
 
 	public void play() {
-		if (GameSetting.soundSetting()) {
+		if (GameSetting.soundSetting(this.context)) {
+			if (this.mp==null) {
+				this.init();
+			}
 			this.mp.start();
 		}
 	}
 	public void pause() {
-		if (GameSetting.soundSetting()) {
-			this.mp.pause();
+		if (GameSetting.soundSetting(this.context)) {
+			if (this.mp!=null) {
+				this.mp.pause();
+			}
 		}
 	}
 	public void release() {

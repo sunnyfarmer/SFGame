@@ -35,8 +35,7 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 	public void surfaceCreated(SurfaceHolder holder) {
 		SFLogger.d(TAG, "surfaceCreated");
 		this.renderState = RENDER_STATE.RENDER_STATE_START;
-		this.renderThread().start();
-
+		this.renderThread(true).start();
 	}
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
@@ -49,8 +48,8 @@ public class HithamsterView extends SurfaceView implements SurfaceHolder.Callbac
 		this.renderState = RENDER_STATE.RENDER_STATE_STOP;
 	}
 
-	public HithamsterRenderThread renderThread() {
-		if (this.renderThread==null) {
+	public HithamsterRenderThread renderThread(boolean needToReinit) {
+		if (this.renderThread==null || needToReinit) {
 			this.renderThread = new HithamsterRenderThread(this.getHolder(), this.getContext());
 		}
 		return this.renderThread;

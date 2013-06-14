@@ -80,22 +80,22 @@ public class MenuActivity extends Activity {
 
 	}
 	private void toggleSoundSetting() {
-		GameSetting.toggleSoundSetting();
+		GameSetting.toggleSoundSetting(this);
 		this.setSoundSettingDisplay();
 	}
 	private void setSoundSettingDisplay() {
-		if (GameSetting.soundSetting()) {
+		if (GameSetting.soundSetting(this)) {
 			this.ivSound.setImageResource(R.drawable.sound_enable);
 		} else {
 			this.ivSound.setImageResource(R.drawable.sound_disable);
 		}
 	}
 	private void toggleShakeSetting() {
-		GameSetting.toggleShakeSetting();
+		GameSetting.toggleShakeSetting(this);
 		this.setShakeSettingDisplay();
 	}
 	private void setShakeSettingDisplay() {
-		if (GameSetting.shakeSetting()) {
+		if (GameSetting.shakeSetting(this)) {
 			this.ivShake.setImageResource(R.drawable.shake_enable);
 		} else {
 			this.ivShake.setImageResource(R.drawable.shake_disable);

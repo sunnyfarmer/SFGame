@@ -1,6 +1,7 @@
 package sf.game.hithamster.view.element;
 
 import sf.game.hithamster.R;
+import sf.game.hithamster.model.GameProcessController;
 import sf.util.SFFloatPoint;
 import sf.util.SFLogger;
 import android.annotation.SuppressLint;
@@ -19,6 +20,7 @@ public class Background extends SFElement{
 	private Timebar timebar = null;
 	public int hamsterHitNumber = 0;
 	public int hamsterMiss = 0;
+	public boolean isGameOver = false;
 	private Typeface tp = null;
 
 	@SuppressLint("NewApi")
@@ -73,6 +75,10 @@ public class Background extends SFElement{
 		this.paint.setTextSize(50);
 		this.paint.setTypeface(this.tp);
 		canvasOfBackground.drawText(String.format("中 %d   失%d", this.hamsterHitNumber, this.hamsterMiss), 400, 60, this.paint);
+
+		if (isGameOver) {
+			canvasOfBackground.drawText("游戏结束", 350, 240, this.paint);
+		}
 
 		//将背景渲染到屏幕
 		Rect srcRect = new Rect(0, 0, backgroundCopy.getWidth(), backgroundCopy.getHeight());

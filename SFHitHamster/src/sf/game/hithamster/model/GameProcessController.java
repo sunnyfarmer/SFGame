@@ -1,14 +1,13 @@
 package sf.game.hithamster.model;
 
-import sf.util.SFLogger;
-
 public class GameProcessController {
 	public static final String TAG = "GameProcessController";
 	public static enum GAME_STATE {
 		GAME_STATE_READY,
 		GAME_STATE_PLAY,//游戏开始
 		GAME_STATE_PAUSE,//游戏暂停
-		GAME_STATE_FINISH//游戏结束
+		GAME_STATE_FINISH,//游戏完成一关
+		GAME_STATE_OVER//游戏结束
 	};
 
 	private GAME_STATE state = GAME_STATE.GAME_STATE_PLAY;
@@ -19,6 +18,8 @@ public class GameProcessController {
 	private int level = 1;
 	private static long[] ACTIVE_TIME_GAP_LIST = {1000, 900, 800, 700, 600};
 	private long active_time_gap = ACTIVE_TIME_GAP_LIST[0];
+
+	public static final int FULL_POWER = 5;
 
 
 	public GAME_STATE getGameState() {
@@ -36,6 +37,9 @@ public class GameProcessController {
 	}
 	public void finish() {
 		this.state = GAME_STATE.GAME_STATE_FINISH;
+	}
+	public void gameOver() {
+		this.state = GAME_STATE.GAME_STATE_OVER;
 	}
 	private static long getTimeGapByLevel(int level) {
 		//level 	: 0   1   2   3   4   5   6   7   8   9   10...
@@ -68,11 +72,19 @@ public class GameProcessController {
 		case GAME_STATE_FINISH:
 			this.gotoNextLevel();
 			break;
+		case GAME_STATE_OVER:
+			break;
 		default:
 			break;
 		}
 	}
 	public float getGameProcess() {
 		return this.processCount * 1.0f / PROCESS_SUM;
+	}
+
+	public void isGameOver(int hamsterHitted, int hamsterMiss) {
+		if (hamsterMiss > FULL_POWER) {
+			this.gameOver();
+		}
 	}
 }

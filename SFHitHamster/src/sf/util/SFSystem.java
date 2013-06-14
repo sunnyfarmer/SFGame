@@ -13,7 +13,7 @@ public class SFSystem {
 	}
 
 	public static void vibrate(Context context, long milliseconds) {
-		if (GameSetting.shakeSetting()) {
+		if (GameSetting.shakeSetting(context)) {
 			Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 			vibrator.vibrate(milliseconds);
 		}

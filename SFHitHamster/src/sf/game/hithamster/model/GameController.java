@@ -2,14 +2,18 @@ package sf.game.hithamster.model;
 
 import java.util.ArrayList;
 
+import sf.game.hithamster.model.GameProcessController.GAME_STATE;
 import sf.game.hithamster.view.element.Background;
 import sf.util.SFFloatPoint;
 import sf.util.SFMath;
 import sf.util.SFSystem;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -27,6 +31,13 @@ public class GameController {
 	public GameController(Context context) {
 		this.context = context;
 		this.gameProcessController = new GameProcessController();
+	}
+
+	public GameProcessController getGameProcessController() {
+		if (this.gameProcessController==null) {
+			this.gameProcessController = new GameProcessController();
+		}
+		return this.gameProcessController;
 	}
 
 	public Background getElBackground() {
@@ -52,6 +63,8 @@ public class GameController {
 		}
 		//控制地鼠的运动
 		this.getHamsterController().controlHamsters();
+
+		this.gameProcessController.isGameOver(this.getElBackground().hamsterHitNumber, this.getElBackground().hamsterMiss);
 	}
 
 	public void render(Canvas canvas) {
@@ -83,10 +96,18 @@ public class GameController {
 		}
 		this.elBackground.getTimebar().setPercent(this.gameProcessController.getGameProcess());
 
+		if (this.gameProcessController.getGameState().equals(GAME_STATE.GAME_STATE_OVER)) {
+			this.getElBackground().isGameOver = true;
+		}
+
 		this.getElBackground().display(canvas, backgroundCopy);
 	}
 
 	public boolean onTouch(View v, MotionEvent event) {
+		if (this.getGameProcessController().getGameState().equals(GAME_STATE.GAME_STATE_OVER)) {
+			((Activity)this.context).finish();
+		}
+
 		float x = event.getX();
 		float y = event.getY();
 		this.elBackground.getHam().setScreenX(x);
