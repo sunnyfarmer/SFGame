@@ -21,6 +21,8 @@ public class GameProcessController {
 
 	public static final int FULL_POWER = 5;
 
+	public static final int UPGRADE_WAITING_TIME = 50;
+	public int upgradeWatingTimeCount = UPGRADE_WAITING_TIME;
 
 	public GAME_STATE getGameState() {
 		return this.state;
@@ -70,7 +72,11 @@ public class GameProcessController {
 			}
 			break;
 		case GAME_STATE_FINISH:
-			this.gotoNextLevel();
+			this.upgradeWatingTimeCount--;
+			if (this.upgradeWatingTimeCount<0) {
+				this.gotoNextLevel();
+				this.upgradeWatingTimeCount = GameProcessController.UPGRADE_WAITING_TIME;
+			}
 			break;
 		case GAME_STATE_OVER:
 			break;

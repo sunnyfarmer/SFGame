@@ -99,6 +99,12 @@ public class GameController {
 		if (this.gameProcessController.getGameState().equals(GAME_STATE.GAME_STATE_OVER)) {
 			this.getElBackground().isGameOver = true;
 		}
+		if (this.gameProcessController.getGameState().equals(GAME_STATE.GAME_STATE_FINISH)) {
+			this.getElBackground().isGameUpgrading = true;
+			this.getElBackground().upgradeProcess = this.gameProcessController.upgradeWatingTimeCount;
+		} else {
+			this.getElBackground().isGameUpgrading = false;
+		}
 
 		this.getElBackground().display(canvas, backgroundCopy);
 	}
@@ -108,15 +114,17 @@ public class GameController {
 			((Activity)this.context).finish();
 		}
 
-		float x = event.getX();
-		float y = event.getY();
-		this.elBackground.getHam().setScreenX(x);
-		this.elBackground.getHam().setScreenY(y);
-
-		this.hamsterController.hitHamsters(
-				this.elBackground.screenToBackgroundPoint(
-						new SFFloatPoint(x, y)		
-				));
+		if (this.getGameProcessController().getGameState().equals(GAME_STATE.GAME_STATE_PLAY)) {
+			float x = event.getX();
+			float y = event.getY();
+			this.elBackground.getHam().setScreenX(x);
+			this.elBackground.getHam().setScreenY(y);
+	
+			this.hamsterController.hitHamsters(
+					this.elBackground.screenToBackgroundPoint(
+							new SFFloatPoint(x, y)		
+					));
+		}
 		return false;
 	}
 

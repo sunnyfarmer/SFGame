@@ -1,7 +1,10 @@
 package sf.game.hithamster.audio;
 
+import java.util.ArrayList;
+
 import sf.game.hithamster.R;
 import sf.game.hithamster.model.GameSetting;
+import sf.util.SFMath;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -17,15 +20,29 @@ public class GameSound {
 		this.init();
 	}
 
+	public static final int[] SOUND_FILE_LIST = {
+		R.raw.lgbe_na_shit_
+	};
+
+	public static final int randomSound() {
+		int length = SOUND_FILE_LIST.length;
+		int index = SFMath.randomInt(0, length-1);
+		return SOUND_FILE_LIST[index];
+	}
+
 	public void init() {
 		if (GameSetting.soundSetting(this.context)) {
 			// 初始化声音资源
-			mp = MediaPlayer.create(this.context, R.raw.lgbe_na_shit_);
+			int resId = GameSound.randomSound();
+			mp = MediaPlayer.create(this.context, resId);
 			mp.setOnCompletionListener(new OnCompletionListener() {
 				@Override
 				public void onCompletion(MediaPlayer mp) {
-					mp.seekTo(0);
-					mp.start();
+					GameSound.this.release();
+					GameSound.this.init();
+					GameSound.this.play();
+//					mp.seekTo(0);
+//					mp.start();
 				}
 			});
 		}

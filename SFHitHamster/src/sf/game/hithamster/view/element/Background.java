@@ -21,6 +21,8 @@ public class Background extends SFElement{
 	public int hamsterHitNumber = 0;
 	public int hamsterMiss = 0;
 	public boolean isGameOver = false;
+	public boolean isGameUpgrading = false;//游戏正处于升级阶段
+	public int upgradeProcess = 0;
 	private Typeface tp = null;
 
 	@SuppressLint("NewApi")
@@ -78,6 +80,9 @@ public class Background extends SFElement{
 
 		if (isGameOver) {
 			canvasOfBackground.drawText("游戏结束", 350, 240, this.paint);
+		}
+		if (this.isGameUpgrading) {
+			canvasOfBackground.drawText(String.format("进入下一关倒数%d", this.upgradeProcess), 250, 240, this.paint);
 		}
 
 		//将背景渲染到屏幕
