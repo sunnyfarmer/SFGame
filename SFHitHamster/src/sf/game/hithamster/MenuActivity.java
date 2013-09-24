@@ -1,13 +1,12 @@
 package sf.game.hithamster;
 
 import sf.game.hithamster.model.GameSetting;
-import android.media.MediaPlayer;
+import sf.util.SFAdvertisement;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.app.Activity;
 import android.content.Intent;
@@ -24,6 +23,9 @@ public class MenuActivity extends Activity {
 
 		this.findView();
 		this.setListener();
+
+		SFAdvertisement.init(this);
+		SFAdvertisement.showSmartBanner(this);
 	}
 	@Override
 	protected void onResume() {
