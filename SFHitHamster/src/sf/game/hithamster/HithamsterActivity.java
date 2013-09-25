@@ -1,7 +1,11 @@
 package sf.game.hithamster;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import sf.game.hithamster.audio.GameSound;
 import sf.game.hithamster.view.HithamsterView;
+import sf.util.SFAdvertisement;
 import sf.util.SFLogger;
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,6 +15,9 @@ public class HithamsterActivity extends Activity {
     private HithamsterView surfaceView = null;
 
     private GameSound gameSound = null;
+
+    private Timer mTimer = null;
+    private TimerTask mTimerTask = null;
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class HithamsterActivity extends Activity {
 		super.onResume();
 
 		this.gameSound.play();
+		this.beginAdTimer();
 	}
 	@Override
 	protected void onPause() {
@@ -35,6 +43,7 @@ public class HithamsterActivity extends Activity {
 
 		this.gameSound.pause();
 		this.surfaceView.setRenderState(HithamsterView.RENDER_STATE.RENDER_STATE_STOP);
+		this.stopAdTimer();
 	}
 	@Override
 	protected void onStop() {
@@ -49,5 +58,25 @@ public class HithamsterActivity extends Activity {
 
 	private void setListener() {
 		this.surfaceView.setOnTouchListener(this.surfaceView);
+	}
+
+	private void beginAdTimer() {
+		this.stopAdTimer();
+		if (this.mTimer==null) {
+			this.mTimer = new Timer();
+			this.mTimerTask = new TimerTask() {
+				@Override
+				public void run() {
+					SFAdvertisement.showSmartBanner(HithamsterActivity.this);
+				}
+			};
+			this.mTimer.schedule(mTimerTask, 10000);
+		}
+	}
+	private void stopAdTimer() {
+		if (this.mTimer!=null) {
+			this.mTimer.cancel();
+			this.mTimer = null;
+		}
 	}
 }
