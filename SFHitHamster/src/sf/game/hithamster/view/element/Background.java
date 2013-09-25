@@ -8,12 +8,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.widget.Toast;
 
 public class Background extends SFElement{
 	public static final String TAG = "Background";
 
+	private Bitmap bitmapGameover = null;
+	private Bitmap bitmapProgress = null;
 	private Bitmap bitmapLife = null;
 	private Bitmap bitmapBackground = null;
 	private Ham ham = null;
@@ -28,6 +32,8 @@ public class Background extends SFElement{
 	@SuppressLint("NewApi")
 	public Background(Context context) {
 		super(context);
+		this.bitmapGameover = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.gameover);
+		this.bitmapProgress = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.progress);
 		this.bitmapLife = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.life);
 		this.bitmapBackground = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.background);
 		this.tp = Typeface.createFromAsset(this.context.getAssets(), "FengardoNeue_Black.otf");
@@ -75,10 +81,8 @@ public class Background extends SFElement{
 
 		//画上红心
 		for (int cot = 0; cot < this.missChance; cot++) {
-			canvasOfBackground.drawBitmap(this.bitmapLife, 400+cot*64, 30, this.paint);			
+			canvasOfBackground.drawBitmap(this.bitmapLife, 410+cot*64, 30, this.paint);			
 		}
-//		canvasOfBackground.drawBitmap(this.bitmapLife, 464, 30, this.paint);
-//		canvasOfBackground.drawBitmap(this.bitmapLife, 464+64, 30, this.paint);
 
 		//画上分数
 		this.paint.setARGB(255, 255, 255, 255);
@@ -87,10 +91,20 @@ public class Background extends SFElement{
 //		canvasOfBackground.drawText(String.format("中 %d   失%d", this.hamsterHitNumber, this.hamsterMiss), 400, 60, this.paint);
 
 		if (isGameOver) {
-			canvasOfBackground.drawText("游戏结束", 350, 240, this.paint);
+			Matrix matrix = new Matrix();
+			//scale (1.0~2.0) 2 second
+			float step = System.currentTimeMillis()%500*1.0f/500.0f;
+			float scale = (float) (0.8 + 0.2*step);
+			matrix.setScale(1.0f, scale);
+			canvasOfBackground.drawBitmap(bitmapGameover, matrix, this.paint);
 		}
 		if (this.isGameUpgrading) {
-			canvasOfBackground.drawText(String.format("一大波地鼠正在靠近 %d", this.upgradeProcess), 250, 240, this.paint);
+			Matrix matrix = new Matrix();
+			//width (-100~100) 2 second
+			float step = System.currentTimeMillis()%2000*1.0f/2000.0f;
+			int xOffset = (int) (100 - 200*step);
+			matrix.setTranslate(xOffset, 0);
+			canvasOfBackground.drawBitmap(this.bitmapProgress, matrix, this.paint);
 		}
 
 		//将背景渲染到屏幕
