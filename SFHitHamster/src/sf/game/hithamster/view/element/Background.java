@@ -14,11 +14,12 @@ import android.graphics.Typeface;
 public class Background extends SFElement{
 	public static final String TAG = "Background";
 
+	private Bitmap bitmapLife = null;
 	private Bitmap bitmapBackground = null;
 	private Ham ham = null;
 	private Timebar timebar = null;
+	public int missChance = 6;
 	public int hamsterHitNumber = 0;
-	public int hamsterMiss = 0;
 	public boolean isGameOver = false;
 	public boolean isGameUpgrading = false;//游戏正处于升级阶段
 	public int upgradeProcess = 0;
@@ -27,6 +28,7 @@ public class Background extends SFElement{
 	@SuppressLint("NewApi")
 	public Background(Context context) {
 		super(context);
+		this.bitmapLife = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.life);
 		this.bitmapBackground = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.background);
 		this.tp = Typeface.createFromAsset(this.context.getAssets(), "FengardoNeue_Black.otf");
 	}
@@ -71,17 +73,24 @@ public class Background extends SFElement{
 		//时间栏
 		this.getTimebar().display(canvasOfBackground, 50, 20);
 
+		//画上红心
+		for (int cot = 0; cot < this.missChance; cot++) {
+			canvasOfBackground.drawBitmap(this.bitmapLife, 400+cot*64, 30, this.paint);			
+		}
+//		canvasOfBackground.drawBitmap(this.bitmapLife, 464, 30, this.paint);
+//		canvasOfBackground.drawBitmap(this.bitmapLife, 464+64, 30, this.paint);
+
 		//画上分数
 		this.paint.setARGB(255, 255, 255, 255);
 		this.paint.setTextSize(50);
 		this.paint.setTypeface(this.tp);
-		canvasOfBackground.drawText(String.format("中 %d   失%d", this.hamsterHitNumber, this.hamsterMiss), 400, 60, this.paint);
+//		canvasOfBackground.drawText(String.format("中 %d   失%d", this.hamsterHitNumber, this.hamsterMiss), 400, 60, this.paint);
 
 		if (isGameOver) {
 			canvasOfBackground.drawText("游戏结束", 350, 240, this.paint);
 		}
 		if (this.isGameUpgrading) {
-			canvasOfBackground.drawText(String.format("进入下一关倒数%d", this.upgradeProcess), 250, 240, this.paint);
+			canvasOfBackground.drawText(String.format("一大波地鼠正在靠近 %d", this.upgradeProcess), 250, 240, this.paint);
 		}
 
 		//将背景渲染到屏幕

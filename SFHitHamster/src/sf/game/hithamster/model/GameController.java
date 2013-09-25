@@ -62,7 +62,7 @@ public class GameController {
 		//控制地鼠的运动
 		this.getHamsterController().controlHamsters();
 
-		this.gameProcessController.isGameOver(this.getElBackground().hamsterHitNumber, this.getElBackground().hamsterMiss);
+		this.gameProcessController.isGameOver(this.getElBackground().hamsterHitNumber, this.getElBackground().missChance);
 	}
 
 	public void render(Canvas canvas) {
@@ -210,7 +210,7 @@ public class GameController {
 
 		@Override
 		public void onLeave(ModelHamster modelHamster) {
-			GameController.this.elBackground.hamsterMiss++;
+			GameController.this.elBackground.missChance--;
 		}
 	}
 }

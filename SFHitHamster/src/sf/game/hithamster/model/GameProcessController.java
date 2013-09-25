@@ -88,8 +88,8 @@ public class GameProcessController {
 		return this.processCount * 1.0f / PROCESS_SUM;
 	}
 
-	public void isGameOver(int hamsterHitted, int hamsterMiss) {
-		if (hamsterMiss > FULL_POWER) {
+	public void isGameOver(int hamsterHitted, int missChance) {
+		if (missChance <= 0) {
 			this.gameOver();
 		}
 	}
