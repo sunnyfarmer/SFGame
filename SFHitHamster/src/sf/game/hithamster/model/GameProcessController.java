@@ -13,7 +13,7 @@ public class GameProcessController {
 	private GAME_STATE state = GAME_STATE.GAME_STATE_PLAY;
 
 	private int processCount = 0;
-	private static final int PROCESS_SUM = 100;
+	private static final int PROCESS_SUM = 200;
 
 	private int level = 1;
 	private static long[] ACTIVE_TIME_GAP_LIST = {1000, 900, 800, 700, 600};
