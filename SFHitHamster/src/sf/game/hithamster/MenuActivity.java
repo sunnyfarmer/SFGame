@@ -78,9 +78,6 @@ public class MenuActivity extends Activity {
 			isGameTriggered = true;
 		}
 	}
-	private void exitGame() {
-
-	}
 	private void toggleSoundSetting() {
 		GameSetting.toggleSoundSetting(this);
 		this.setSoundSettingDisplay();

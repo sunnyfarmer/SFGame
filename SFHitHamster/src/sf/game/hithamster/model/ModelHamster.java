@@ -1,7 +1,5 @@
 package sf.game.hithamster.model;
 
-import java.util.Date;
-
 import sf.game.hithamster.model.GameController.OnLeaveListener;
 import sf.game.hithamster.view.element.HamsterHole;
 import sf.util.SFFloatPoint;
@@ -46,6 +44,7 @@ public class ModelHamster {
 	private HAMSTER_STATE state = HAMSTER_STATE.HIDED;
 	private long hamsterStateChangedTime = Long.MIN_VALUE;
 
+	@SuppressWarnings("unused")
 	private Context context = null;
 	private HamsterHole hamsterHole = null;
 

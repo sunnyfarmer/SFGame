@@ -4,8 +4,6 @@ import sf.game.hithamster.audio.GameSound;
 import sf.game.hithamster.view.HithamsterView;
 import sf.util.SFLogger;
 import android.app.Activity;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 
 public class HithamsterActivity extends Activity {

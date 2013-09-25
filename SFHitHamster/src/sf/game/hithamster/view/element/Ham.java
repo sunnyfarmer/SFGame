@@ -1,13 +1,11 @@
 package sf.game.hithamster.view.element;
 
 import sf.game.hithamster.R;
-import sf.util.SFLogger;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.widget.Toast;
 
 public class Ham extends SFElement {
 	public static final String TAG = "Ham";

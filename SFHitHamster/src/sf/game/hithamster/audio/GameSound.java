@@ -1,7 +1,5 @@
 package sf.game.hithamster.audio;
 
-import java.util.ArrayList;
-
 import sf.game.hithamster.R;
 import sf.game.hithamster.model.GameSetting;
 import sf.util.SFMath;

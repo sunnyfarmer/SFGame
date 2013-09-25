@@ -1,7 +1,6 @@
 package sf.game.hithamster.view.element;
 
 import sf.game.hithamster.R;
-import sf.game.hithamster.model.GameProcessController;
 import sf.util.SFFloatPoint;
 import sf.util.SFLogger;
 import android.annotation.SuppressLint;

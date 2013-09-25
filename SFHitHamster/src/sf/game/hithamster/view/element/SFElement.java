@@ -2,13 +2,11 @@ package sf.game.hithamster.view.element;
 
 import sf.util.SFSystem;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.os.Build;
 import android.view.Display;
 
 public abstract class SFElement {
