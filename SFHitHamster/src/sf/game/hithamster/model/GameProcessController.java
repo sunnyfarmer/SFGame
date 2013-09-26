@@ -16,7 +16,11 @@ public class GameProcessController {
 	private static final int PROCESS_SUM = 200;
 
 	private int level = 1;
-	private static long[] ACTIVE_TIME_GAP_LIST = {1000, 900, 800, 700, 600};
+	private static long[] ACTIVE_TIME_GAP_LIST = {
+		1200, 1100, 1000, 950, 900,
+		850, 800, 750, 700, 650,
+		600, 575, 550, 525, 500,
+		490, 480, 470, 460, 450};
 	private long active_time_gap = ACTIVE_TIME_GAP_LIST[0];
 
 	public static final int FULL_POWER = 5;
@@ -92,5 +96,9 @@ public class GameProcessController {
 		if (missChance <= 0) {
 			this.gameOver();
 		}
+	}
+
+	public int getLevel() {
+		return this.level;
 	}
 }

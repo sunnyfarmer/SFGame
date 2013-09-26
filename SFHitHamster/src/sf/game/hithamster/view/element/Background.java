@@ -27,6 +27,7 @@ public class Background extends SFElement{
 	public boolean isGameOver = false;
 	public boolean isGameUpgrading = false;//游戏正处于升级阶段
 	public int upgradeProcess = 0;
+	public int gameLevel = 0;
 
 
 	@SuppressLint("NewApi")
@@ -83,11 +84,11 @@ public class Background extends SFElement{
 			canvasOfBackground.drawBitmap(this.bitmapLife, 410+cot*64, 30, this.paint);			
 		}
 
-		//画上分数
-		this.paint.setARGB(255, 255, 255, 255);
+		//画上等级
+		this.paint.setARGB(255, 255, 0, 0);
 		this.paint.setTextSize(50);
 		this.paint.setTypeface(this.tp);
-//		canvasOfBackground.drawText(String.format("中 %d   失%d", this.hamsterHitNumber, this.hamsterMiss), 400, 60, this.paint);
+		canvasOfBackground.drawText(String.valueOf(this.gameLevel), 5, 40, this.paint);
 
 		if (isGameOver) {
 			Matrix matrix = new Matrix();

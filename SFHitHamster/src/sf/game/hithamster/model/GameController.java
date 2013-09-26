@@ -62,6 +62,9 @@ public class GameController {
 		//控制地鼠的运动
 		this.getHamsterController().controlHamsters();
 
+		//同步游戏等级
+		this.getElBackground().gameLevel = this.gameProcessController.getLevel();
+
 		this.gameProcessController.isGameOver(this.getElBackground().hamsterHitNumber, this.getElBackground().missChance);
 	}
 
