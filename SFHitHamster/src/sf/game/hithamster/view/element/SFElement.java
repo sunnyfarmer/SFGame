@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.view.Display;
 
 public abstract class SFElement {
@@ -14,6 +15,7 @@ public abstract class SFElement {
 	protected int contextWidth = 0;
 	protected int contextHeight = 0;
 	protected Paint paint = new Paint();
+	protected Typeface tp = null;
 
 	@SuppressLint("NewApi")
 	public SFElement(Context context) {
@@ -32,6 +34,8 @@ public abstract class SFElement {
 		}
 
 		this.paint.setAntiAlias(true);
+
+		this.tp = Typeface.createFromAsset(this.context.getAssets(), "FengardoNeue_Black.otf");
 	}
 
 	public abstract void display(Canvas canvas);

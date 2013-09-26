@@ -3,6 +3,7 @@ package sf.game.hithamster.model;
 import sf.game.hithamster.model.GameController.OnLeaveListener;
 import sf.game.hithamster.view.element.HamsterHole;
 import sf.util.SFFloatPoint;
+import sf.util.SFMath;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -39,7 +40,7 @@ public class ModelHamster {
 	};
 
 	private static final int FULL_LIFE = 1;
-	private int life = FULL_LIFE;
+	public int life = FULL_LIFE;
 
 	private HAMSTER_STATE state = HAMSTER_STATE.HIDED;
 	private long hamsterStateChangedTime = Long.MIN_VALUE;
@@ -94,7 +95,7 @@ public class ModelHamster {
 	}
 	//重生
 	public void reborn() {
-		this.life = ModelHamster.FULL_LIFE;
+		this.life = SFMath.randomInt(1, 3);//ModelHamster.FULL_LIFE;
 		this.state = HAMSTER_STATE.HIDED;
 		this.freshStateTime();
 	}

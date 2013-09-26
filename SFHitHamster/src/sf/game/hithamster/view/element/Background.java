@@ -27,7 +27,7 @@ public class Background extends SFElement{
 	public boolean isGameOver = false;
 	public boolean isGameUpgrading = false;//游戏正处于升级阶段
 	public int upgradeProcess = 0;
-	private Typeface tp = null;
+
 
 	@SuppressLint("NewApi")
 	public Background(Context context) {
@@ -36,7 +36,6 @@ public class Background extends SFElement{
 		this.bitmapProgress = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.progress);
 		this.bitmapLife = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.life);
 		this.bitmapBackground = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.background);
-		this.tp = Typeface.createFromAsset(this.context.getAssets(), "FengardoNeue_Black.otf");
 	}
 
 	public Bitmap getBitmapBackground() {

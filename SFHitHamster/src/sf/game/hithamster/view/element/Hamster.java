@@ -32,6 +32,12 @@ public class Hamster extends SFElement {
 		Matrix matrix = new Matrix();
 		float xOffset = this.x;
 		float yOffset = this.y;
+
+		this.paint.setARGB(255, 255, 255, 255);
+		this.paint.setTextSize(50);
+		this.paint.setTypeface(this.tp);
+		canvas.drawText(String.valueOf(this.modelHamster.life), this.x-10, this.y, this.paint);
+
 		switch(this.modelHamster.getState()) {
 		case HIDING:
 			//计算上移的步数
