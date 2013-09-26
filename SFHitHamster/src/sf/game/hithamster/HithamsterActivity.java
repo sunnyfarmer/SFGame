@@ -3,6 +3,8 @@ package sf.game.hithamster;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import sf.game.hithamster.audio.GameSound;
 import sf.game.hithamster.view.HithamsterView;
 import sf.util.SFAdvertisement;
@@ -31,7 +33,14 @@ public class HithamsterActivity extends Activity {
 	    this.gameSound = new GameSound(this);
 	}
 	@Override
+	protected void onStart() {
+		SFLogger.d(TAG, "onStart");
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+	@Override
 	protected void onResume() {
+		SFLogger.d(TAG, "onResume");
 		super.onResume();
 
 		this.gameSound.play();
@@ -39,6 +48,7 @@ public class HithamsterActivity extends Activity {
 	}
 	@Override
 	protected void onPause() {
+		SFLogger.d(TAG, "onPause");
 		super.onPause();
 
 		this.gameSound.pause();
@@ -47,7 +57,9 @@ public class HithamsterActivity extends Activity {
 	}
 	@Override
 	protected void onStop() {
+		SFLogger.d(TAG, "onStop");
 		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
 
 		this.gameSound.release();
 		this.surfaceView.setRenderState(HithamsterView.RENDER_STATE.RENDER_STATE_STOP);
