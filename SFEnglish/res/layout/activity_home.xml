@@ -12,36 +12,46 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-        <Button 
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/btnPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="前一个"
-            android:textSize="24sp"/>
-        <ImageView 
+            android:text="@string/previous"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/content_size" />
+
+        <ImageView
+            android:id="@+id/ivCourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_launcher"/>
-        <Button 
+            android:contentDescription="@string/default_content_description"
+            android:src="@drawable/ic_launcher" />
+
+        <Button
+            android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="后一个"
-            android:textSize="24sp"/>
+            android:text="@string/next"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/content_size" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        <TextView android:layout_width="wrap_content"
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="请点击广告,充时间!!"
-            android:textSize="24sp"
-            />
+            android:text="@string/charge_tips"
+            android:textSize="@dimen/content_size" />
     </LinearLayout>
 
 </LinearLayout>
