@@ -1,9 +1,11 @@
 package sf.game.english;
 
+import sf.libs.log.SFLog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -56,6 +58,21 @@ public class ActivityHome extends TopActivity {
 			@Override
 			public void onClick(View v) {
 				Animation animation = AnimationUtils.loadAnimation(ActivityHome.this, R.anim.iv_go);
+				animation.setAnimationListener(new AnimationListener() {
+					@Override
+					public void onAnimationStart(Animation animation) {
+						SFLog.d(TAG, "onAnimationStart");
+					}
+					@Override
+					public void onAnimationRepeat(Animation animation) {
+						SFLog.d(TAG, "onAnimationRepeat");
+					}
+					@Override
+					public void onAnimationEnd(Animation animation) {
+						SFLog.d(TAG, "onAnimationEnd");
+						toActivity(ActivityCourse.class);
+					}
+				});
 				v.startAnimation(animation);
 			}
 		});

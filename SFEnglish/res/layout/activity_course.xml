@@ -3,6 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/default_content_description"
+        android:src="@drawable/ic_launcher"/>
+
+    <GridView 
+        android:id="@+id/gvObject"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:numColumns="auto_fit"
+        android:layout_weight="1" >
+        
+    </GridView>
 </LinearLayout>
