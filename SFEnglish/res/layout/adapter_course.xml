@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+    <ImageView 
+        android:id="@+id/ivCourse"
+        android:layout_width="@dimen/adapter_course_pic_width"
+        android:layout_height="@dimen/adapter_course_pic_height"
+        android:contentDescription="@string/default_content_description"
+        android:src="@drawable/ic_launcher"
+        />
+    <TextView 
+        android:id="@+id/tvCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/adapter_course_title_textsize"
+        android:textColor="@android:color/black"
+        android:background="@android:color/darker_gray"
+        android:layout_gravity="right|bottom"
+        android:text="Apple"/>
+</FrameLayout>
