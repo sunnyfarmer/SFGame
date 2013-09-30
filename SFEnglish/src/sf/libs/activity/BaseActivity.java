@@ -1,8 +1,6 @@
 package sf.libs.activity;
 
 import sf.game.english.R;
-import sf.game.english.R.string;
-
 import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.Activity;
@@ -13,18 +11,19 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class BaseActivity extends Activity {
+public class BaseActivity<T extends BaseApp> extends Activity {
 	public static final String TAG = "TopActivity";
 
-	protected BaseApp mApp = null;
+	protected T mApp = null;
 	protected EditText mEditText = null;
 	protected AlertDialog mAlertDialog = null;
 	private OnInputConfirmedListener mOnInputConfirmedListener = null;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.mApp = (BaseApp)this.getApplicationContext();
+		this.mApp = (T)this.getApplicationContext();
 
 		this.initData();
 		this.initView();
@@ -95,7 +94,7 @@ public class BaseActivity extends Activity {
 	public void showToast(int resId, int length) {
 		showToast(this.getText(resId).toString(), length);
 	}
-	public BaseApp getmApp() {
+	public T getmApp() {
 		return mApp;
 	}
 }
