@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animal">
+        <!-- 陆 -->
+        <item>cat</item>
+        <item>dog</item>
+        <item>monkey</item>
+		<item>panda</item>
+		<item>pig</item>
+		<item>lion</item>
+		<item>tiger</item>
+		<item>ant</item>
+		<item>bear</item>
+		<item>duck</item>
+		<item>rabbit</item>
+		<item>sheep</item>
+		<item>cock</item>
+		<item>hen</item>
+		<item>bull</item>
+		<item>camel</item>
+		<item>caterpillar</item>
+		<item>elephant</item>
+		<item>fox</item>
+		<item>goat</item>
+		<item>marmot</item>
+		<item>mouse</item>
+		<item>snail</item>
+		<item>spider</item>
+		<item>wolf</item>
+		<item>zebra</item>
+		<!-- 空 -->
+		<item>bird</item>
+		<item>bat</item>
+		<item>bee</item>
+		<item>butterfly</item>
+		<item>dragonfly</item>
+		<item>eagle</item>
+		<item>parrot</item>
+		<item>sparrow</item>
+		<item>swallow</item>
+		<item>woodpecker</item>
+		<!-- 海 -->
+		<item>fish</item>
+		<item>whale</item>
+		<item>turtle</item>
+		<item>shark</item>
+		<item>crab</item>
+		<item>starfish</item>
+		<item>frog</item>
+		<item>dolphin</item>
+		<item>crocodile</item>
+		<item>penguin</item>
+		<item>snake</item>
+    </string-array>
+
+    <string-array name="fruit">
+        <item>tomato</item>
+		<item>pineapple</item>
+		<item>watermelon</item>
+		<item>banana</item>
+		<item>shaddock</item>
+		<item>orange</item>
+		<item>apple</item>
+		<item>lemon</item>
+		<item>cherry</item>
+		<item>peach</item>
+		<item>pear</item>
+		<item>coconut</item>
+		<item>strawberry</item>
+		<item>buleberry</item>
+		<item>blackberry</item>
+		<item>grape</item>
+		<item>mango</item>
+		<item>pawpaw</item>
+		<item>durian</item>
+		<item>litchi</item>
+		<item>greengage</item>
+		<item>haw</item>
+		<item>plum</item>
+		<item>longan</item>
+		<item>starfruit</item>
+		<item>loquat</item>
+    </string-array>
+    <string-array name="alphet">
+    </string-array>
+    <string-array name="vegetable">
+    </string-array>
+    <string-array name="color">
+    </string-array>
+</resources>

@@ -9,5 +9,8 @@
     <string name="next">下一个</string>
     <string name="charge_tips">请点击广告,充时间!!!</string>
     <string name="default_content_description">default_content_description</string>
+    <string name="back">返回</string>
+    <string name="listen">听</string>
+    <string name="say">说</string>
 
 </resources>
