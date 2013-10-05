@@ -1,7 +1,7 @@
 package sf.game.english.utils;
 
 import java.lang.reflect.Field;
-
+import java.util.ArrayList;
 import sf.game.english.R;
 import sf.libs.log.SFLog;
 
@@ -10,29 +10,52 @@ public class SFResourseManager {
 
 	//COURSE
 	public static enum TCOURSE {
-		COURSE_ANIMAL,
 		COURSE_ALPHET,
 		COURSE_COLOR,
+		COURSE_ANIMAL,
 		COURSE_FRUIT,
 		COURSE_VEGETABLE
 	};
-	public static int courseImageId(TCOURSE course) {
+	public static int courseStringId(TCOURSE course) {
 		int resId = 0;
 		switch (course) {
 		case COURSE_ALPHET:
-			resId = R.drawable.title_alphet;
+			resId = R.string.alphet;
 			break;
 		case COURSE_ANIMAL:
-			resId = R.drawable.title_animal;
+			resId = R.string.animal;
 			break;
 		case COURSE_COLOR:
-			resId = R.drawable.title_color;
+			resId = R.string.color;
 			break;
 		case COURSE_FRUIT:
-			resId = R.drawable.title_fruit;
+			resId = R.string.fruit;
 			break;
 		case COURSE_VEGETABLE:
-			resId = R.drawable.title_vegetable;
+			resId = R.string.vegetable;
+			break;
+		default:
+			break;
+		}
+		return resId;
+	}
+	public static int courseImageId(TCOURSE course, boolean isVertical) {
+		int resId = 0;
+		switch (course) {
+		case COURSE_ALPHET:
+			resId = isVertical ? R.drawable.title_alphet_v : R.drawable.title_alphet_h;
+			break;
+		case COURSE_ANIMAL:
+			resId = isVertical ? R.drawable.title_animal_v : R.drawable.title_animal_h;
+			break;
+		case COURSE_COLOR:
+			resId = isVertical ? R.drawable.title_color_v : R.drawable.title_color_h;
+			break;
+		case COURSE_FRUIT:
+			resId = isVertical ? R.drawable.title_fruit_v : R.drawable.title_fruit_h;
+			break;
+		case COURSE_VEGETABLE:
+			resId = isVertical ? R.drawable.title_vegetable_v : R.drawable.title_vegetable_h;
 			break;
 		default:
 			break;
@@ -82,5 +105,16 @@ public class SFResourseManager {
 	}
 
 	//COURSE CONTENT PICTURES
+	/**
+	 * 生活照片存储assets中
+	 * @param courseObjectName
+	 * @return
+	 */
+	public static ArrayList<String> courseObjectLifeImageFileNames(String courseObjectName) {
+		return null;
+	}
 	//COURSE CONTENT INTRODUCTION
+	public static String courseObjectDescription(String courseObjectName) {
+		return "Description";
+	}
 }

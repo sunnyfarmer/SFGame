@@ -1,20 +1,30 @@
 package sf.game.english.model;
 
+import sf.game.english.utils.SFResourseManager;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class CourseObject {
 	public static final String TAG = "CourseObject";
 
-	private String mObjectTitle = null;
+	private int mIndex = 0;
 	private String mObjectText = null;
 	private Bitmap mObjectBitmap = null;
+	private boolean mIsOpened = false;
+	private int mCorrectTimes = 0;
 
-	public String getmObjectTitle() {
-		return mObjectTitle;
+	public CourseObject(int index, String objectText) {
+		this.setmIndex(index);
+		this.setmObjectText(objectText);
 	}
 
-	public void setmObjectTitle(String mObjectTitle) {
-		this.mObjectTitle = mObjectTitle;
+	public int getmIndex() {
+		return mIndex;
+	}
+
+	public void setmIndex(int mIndex) {
+		this.mIndex = mIndex;
 	}
 
 	public String getmObjectText() {
@@ -25,11 +35,27 @@ public class CourseObject {
 		this.mObjectText = mObjectText;
 	}
 
-	public Bitmap getmObjectBitmap() {
+	public Bitmap getmObjectBitmap(Context context) {
+		if (this.mObjectBitmap==null) {
+			int resId = SFResourseManager.courseObjectBitmapId(mObjectText);
+			this.mObjectBitmap = BitmapFactory.decodeResource(context.getResources(), resId);
+		}
 		return mObjectBitmap;
 	}
 
-	public void setmObjectBitmap(Bitmap mObjectBitmap) {
-		this.mObjectBitmap = mObjectBitmap;
+	public boolean ismIsOpened() {
+		return mIsOpened;
+	}
+
+	public void setmIsOpened(boolean mIsOpened) {
+		this.mIsOpened = mIsOpened;
+	}
+
+	public int getmCorrectTimes() {
+		return mCorrectTimes;
+	}
+
+	public void setmCorrectTimes(int mCorrectTimes) {
+		this.mCorrectTimes = mCorrectTimes;
 	}
 }

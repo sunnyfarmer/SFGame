@@ -59,34 +59,46 @@ public final class R {
         public static final int frog=0x7f020014;
         public static final int goat=0x7f020015;
         public static final int hen=0x7f020016;
-        public static final int ic_launcher=0x7f020017;
-        public static final int lion=0x7f020018;
-        public static final int marmot=0x7f020019;
-        public static final int monkey=0x7f02001a;
-        public static final int mouse=0x7f02001b;
-        public static final int panda=0x7f02001c;
-        public static final int parrot=0x7f02001d;
-        public static final int penguin=0x7f02001e;
-        public static final int pig=0x7f02001f;
-        public static final int rabbit=0x7f020020;
-        public static final int shark=0x7f020021;
-        public static final int sheep=0x7f020022;
-        public static final int snail=0x7f020023;
-        public static final int snake=0x7f020024;
-        public static final int sparrow=0x7f020025;
-        public static final int spider=0x7f020026;
-        public static final int starfish=0x7f020027;
-        public static final int swallow=0x7f020028;
-        public static final int title_alphet=0x7f020029;
-        public static final int title_animal=0x7f02002a;
-        public static final int title_color=0x7f02002b;
-        public static final int title_fruit=0x7f02002c;
-        public static final int title_vegetable=0x7f02002d;
-        public static final int turtle=0x7f02002e;
-        public static final int whale=0x7f02002f;
-        public static final int wolf=0x7f020030;
-        public static final int woodpecker=0x7f020031;
-        public static final int zebra=0x7f020032;
+        public static final int home_background=0x7f020017;
+        public static final int home_left=0x7f020018;
+        public static final int home_right=0x7f020019;
+        public static final int ic_launcher=0x7f02001a;
+        public static final int lion=0x7f02001b;
+        public static final int marmot=0x7f02001c;
+        public static final int monkey=0x7f02001d;
+        public static final int mouse=0x7f02001e;
+        public static final int panda=0x7f02001f;
+        public static final int parrot=0x7f020020;
+        public static final int penguin=0x7f020021;
+        public static final int pig=0x7f020022;
+        public static final int practice_back=0x7f020023;
+        public static final int practice_listen=0x7f020024;
+        public static final int practice_say=0x7f020025;
+        public static final int rabbit=0x7f020026;
+        public static final int shark=0x7f020027;
+        public static final int sheep=0x7f020028;
+        public static final int snail=0x7f020029;
+        public static final int snake=0x7f02002a;
+        public static final int sparrow=0x7f02002b;
+        public static final int spider=0x7f02002c;
+        public static final int starfish=0x7f02002d;
+        public static final int swallow=0x7f02002e;
+        public static final int tiger=0x7f02002f;
+        public static final int title_alphet_h=0x7f020030;
+        public static final int title_alphet_v=0x7f020031;
+        public static final int title_animal_h=0x7f020032;
+        public static final int title_animal_v=0x7f020033;
+        public static final int title_color_h=0x7f020034;
+        public static final int title_color_v=0x7f020035;
+        public static final int title_fruit_h=0x7f020036;
+        public static final int title_fruit_v=0x7f020037;
+        public static final int title_vegetable_h=0x7f020038;
+        public static final int title_vegetable_v=0x7f020039;
+        public static final int turtle=0x7f02003a;
+        public static final int whale=0x7f02003b;
+        public static final int wolf=0x7f02003c;
+        public static final int woodpecker=0x7f02003d;
+        public static final int zebra=0x7f02003e;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0005;
@@ -107,16 +119,23 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f070001;
+        /**  分类 
+         */
+        public static final int alphet=0x7f07000b;
+        public static final int animal=0x7f07000d;
         public static final int app_name=0x7f070000;
         public static final int back=0x7f070008;
         public static final int charge_tips=0x7f070006;
+        public static final int color=0x7f07000c;
         public static final int confirm=0x7f070003;
         public static final int default_content_description=0x7f070007;
+        public static final int fruit=0x7f07000e;
         public static final int hello_world=0x7f070002;
         public static final int listen=0x7f070009;
         public static final int next=0x7f070005;
         public static final int previous=0x7f070004;
         public static final int say=0x7f07000a;
+        public static final int vegetable=0x7f07000f;
     }
     public static final class style {
         /** 

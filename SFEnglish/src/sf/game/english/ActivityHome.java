@@ -41,17 +41,25 @@ public class ActivityHome extends TopActivity {
 		this.btnPrevious.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Animation animation = AnimationUtils.loadAnimation(ActivityHome.this, R.anim.btn_un_clickable);
-				v.startAnimation(animation);
+				boolean res = mApp.getmStorageManager().moveToPreviousCourse();
+				if (res) {
+					refreshView();
+				} else {
+					Animation animation = AnimationUtils.loadAnimation(ActivityHome.this, R.anim.btn_un_clickable);
+					v.startAnimation(animation);
+				}
 			}
 		});
 		this.btnNext.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Animation animation = AnimationUtils.loadAnimation(ActivityHome.this, R.anim.btn_un_clickable);
-				v.startAnimation(animation);
+				boolean res = mApp.getmStorageManager().moveToNextCourse();
+				if (res) {
+					refreshView();
+				} else {
+					Animation animation = AnimationUtils.loadAnimation(ActivityHome.this, R.anim.btn_un_clickable);
+					v.startAnimation(animation);
+				}
 			}
 		});
 		this.ivCourse.setOnClickListener(new OnClickListener() {
@@ -76,5 +84,8 @@ public class ActivityHome extends TopActivity {
 				v.startAnimation(animation);
 			}
 		});
+	}
+	protected void refreshView() {
+		this.ivCourse.setImageBitmap(this.mApp.getmStorageManager().getmSelectedCourse().getmCourseBitmapV(this));
 	}
 }

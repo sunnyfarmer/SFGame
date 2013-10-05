@@ -52,12 +52,11 @@ public class ActivityCourse extends TopActivity {
 
 	private void refreshData() {
 		for (int cot = 0; cot < 10; cot++) {
-			CourseObject co = new CourseObject();
-			co.setmObjectTitle("title" + cot);
+			CourseObject co = new CourseObject(cot, String.valueOf(cot));
 			co.setmObjectText("text" + cot);
 			Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
 					R.drawable.ic_launcher);
-			co.setmObjectBitmap(bitmap);
+//			co.setmObjectBitmap(bitmap);
 			this.mCourseObjectArray.add(co);
 		}
 		this.mAdapterCourse = new AdapterCourse(this, mCourseObjectArray);

@@ -13,4 +13,10 @@
     <string name="listen">听</string>
     <string name="say">说</string>
 
+    <!-- 分类 -->
+    <string name="alphet">字母</string>
+    <string name="color">颜色</string>
+    <string name="animal">动物</string>
+    <string name="fruit">水果</string>
+    <string name="vegetable">蔬菜</string>
 </resources>
