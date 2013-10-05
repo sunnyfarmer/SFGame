@@ -86,6 +86,6 @@ public class ActivityHome extends TopActivity {
 		});
 	}
 	protected void refreshView() {
-		this.ivCourse.setImageBitmap(this.mApp.getmStorageManager().getmSelectedCourse().getmCourseBitmapV(this));
+		this.ivCourse.setImageBitmap(this.mApp.getmStorageManager().getmSelectedCourse().getmCourseBitmapV(this.mApp));
 	}
 }

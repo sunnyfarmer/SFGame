@@ -7,12 +7,14 @@ import sf.game.english.model.CourseObject;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 
 public class ActivityCourse extends TopActivity {
 	public static final String TAG = "ActivityCourse";
 
+	protected Button btnBack = null;
 	protected ImageView ivCourse = null;
 	protected GridView gvObject = null;
 
@@ -40,25 +42,20 @@ public class ActivityCourse extends TopActivity {
 	protected void initView() {
 		super.initView();
 
+		this.btnBack = (Button) this.findViewById(R.id.btnBack);
 		this.ivCourse = (ImageView) this.findViewById(R.id.ivCourse);
 		this.gvObject = (GridView) this.findViewById(R.id.gvObject);
+
+		this.ivCourse.setImageBitmap(this.mApp.getmStorageManager().getmSelectedCourse().getmCourseBitmapH(this.mApp));
 	}
 
 	@Override
 	protected void setListener() {
-		// TODO Auto-generated method stub
 		super.setListener();
 	}
 
 	private void refreshData() {
-		for (int cot = 0; cot < 10; cot++) {
-			CourseObject co = new CourseObject(cot, String.valueOf(cot));
-			co.setmObjectText("text" + cot);
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-					R.drawable.ic_launcher);
-//			co.setmObjectBitmap(bitmap);
-			this.mCourseObjectArray.add(co);
-		}
+		this.mCourseObjectArray = this.mApp.getmStorageManager().getmSelectedCourse().getmCourseObjectArray();
 		this.mAdapterCourse = new AdapterCourse(this, mCourseObjectArray);
 		this.gvObject.setAdapter(mAdapterCourse);
 		this.gvObject.setOnItemClickListener(mAdapterCourse);

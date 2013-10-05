@@ -7,6 +7,9 @@
     <dimen name="adapter_course_pic_width">64dp</dimen>
     <dimen name="adapter_course_pic_height">64dp</dimen>
 
+    <dimen name="practice_course_object_pic_width">280dp</dimen>
+    <dimen name="practice_course_object_pic_height">280dp</dimen>
+
     <dimen name="content_size">24sp</dimen>
 	<dimen name="adapter_course_title_textsize">16sp</dimen>
 </resources>

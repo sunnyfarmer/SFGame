@@ -32,8 +32,10 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
         public static final int adapter_course_pic_height=0x7f060003;
         public static final int adapter_course_pic_width=0x7f060002;
-        public static final int adapter_course_title_textsize=0x7f060005;
-        public static final int content_size=0x7f060004;
+        public static final int adapter_course_title_textsize=0x7f060007;
+        public static final int content_size=0x7f060006;
+        public static final int practice_course_object_pic_height=0x7f060005;
+        public static final int practice_course_object_pic_width=0x7f060004;
     }
     public static final class drawable {
         public static final int ant=0x7f020000;
@@ -101,12 +103,13 @@ public final class R {
         public static final int zebra=0x7f02003e;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0005;
-        public static final int btnNext=0x7f0a0003;
-        public static final int btnPrevious=0x7f0a0002;
-        public static final int gvObject=0x7f0a0001;
-        public static final int ivCourse=0x7f0a0000;
-        public static final int tvCourse=0x7f0a0004;
+        public static final int action_settings=0x7f0a0006;
+        public static final int btnBack=0x7f0a0000;
+        public static final int btnNext=0x7f0a0004;
+        public static final int btnPrevious=0x7f0a0003;
+        public static final int gvObject=0x7f0a0002;
+        public static final int ivCourse=0x7f0a0001;
+        public static final int tvCourse=0x7f0a0005;
     }
     public static final class layout {
         public static final int activity_course=0x7f030000;

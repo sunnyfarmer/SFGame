@@ -1,5 +1,6 @@
 package sf.game.english.model;
 
+import sf.game.english.SFEnglishApp;
 import sf.game.english.utils.SFResourseManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -35,10 +36,11 @@ public class CourseObject {
 		this.mObjectText = mObjectText;
 	}
 
-	public Bitmap getmObjectBitmap(Context context) {
+	public Bitmap getmObjectBitmap(SFEnglishApp app) {
 		if (this.mObjectBitmap==null) {
 			int resId = SFResourseManager.courseObjectBitmapId(mObjectText);
-			this.mObjectBitmap = BitmapFactory.decodeResource(context.getResources(), resId);
+			this.mObjectBitmap = app.getmBitmapManager().getBitmap(resId, 64, 64);
+					//BitmapFactory.decodeResource(context.getResources(), resId);
 		}
 		return mObjectBitmap;
 	}

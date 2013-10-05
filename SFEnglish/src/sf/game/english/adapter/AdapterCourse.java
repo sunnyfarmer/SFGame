@@ -61,7 +61,7 @@ public class AdapterCourse extends SFBaseAdapter implements OnItemClickListener 
 		}
 
 		final CourseObject courseObject = this.getItem(position);
-		vhAdapterCourse.ivCourse.setImageBitmap(courseObject.getmObjectBitmap(this.mActivity));
+		vhAdapterCourse.ivCourse.setImageBitmap(courseObject.getmObjectBitmap(this.mApp));
 		vhAdapterCourse.tvCourse.setText(courseObject.getmObjectText());
 
 		return convertView;

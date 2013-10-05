@@ -2,6 +2,7 @@ package sf.game.english.model;
 
 import java.util.ArrayList;
 
+import sf.game.english.SFEnglishApp;
 import sf.game.english.utils.SFResourseManager;
 import sf.game.english.utils.SFResourseManager.TCOURSE;
 
@@ -47,20 +48,22 @@ public class Course {
 		return mCourseObjectArray;
 	}
 
-	public Bitmap getmCourseBitmapH(Context context) {
+	public Bitmap getmCourseBitmapH(SFEnglishApp app) {
 		//TODO
 		if (this.mCourseBitmapH==null) {
 			int resId = SFResourseManager.courseImageId(mTCourse, false);
-			this.mCourseBitmapH = BitmapFactory.decodeResource(context.getResources(), resId);
+			this.mCourseBitmapH = app.getmBitmapManager().getBitmap(resId, 1024, 1024);
+					//BitmapFactory.decodeResource(context.getResources(), resId);
 		}
 		return mCourseBitmapH;
 	}
 
-	public Bitmap getmCourseBitmapV(Context context) {
+	public Bitmap getmCourseBitmapV(SFEnglishApp app) {
 		//TODO 
 		if (this.mCourseBitmapV==null) {
 			int resId = SFResourseManager.courseImageId(mTCourse, true);
-			this.mCourseBitmapV = BitmapFactory.decodeResource(context.getResources(), resId);
+			this.mCourseBitmapV = app.getmBitmapManager().getBitmap(resId, 1024, 1024);
+					//BitmapFactory.decodeResource(context.getResources(), resId);
 		}
 		return mCourseBitmapV;
 	}
