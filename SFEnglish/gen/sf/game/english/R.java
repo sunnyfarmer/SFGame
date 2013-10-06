@@ -13,11 +13,12 @@ public final class R {
         public static final int iv_go=0x7f040001;
     }
     public static final class array {
-        public static final int alphet=0x7f050002;
-        public static final int animal=0x7f050000;
-        public static final int color=0x7f050004;
-        public static final int fruit=0x7f050001;
-        public static final int vegetable=0x7f050003;
+        public static final int alphet=0x7f050003;
+        public static final int animal=0x7f050001;
+        public static final int animal_chinese=0x7f050000;
+        public static final int color=0x7f050005;
+        public static final int fruit=0x7f050002;
+        public static final int vegetable=0x7f050004;
     }
     public static final class attr {
     }

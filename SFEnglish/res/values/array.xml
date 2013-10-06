@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="animal_chinese">
+        <!-- 陆 -->
+        <item>猫</item>
+        <item>狗</item>
+        <item>猴子</item>
+		<item>熊猫</item>
+		<item>猪</item>
+		<item>狮子</item>
+		<item>老虎</item>
+		<item>蚂蚁</item>
+		<item>熊</item>
+		<item>鸭子</item>
+		<item>兔子</item>
+		<item>绵羊</item>
+		<item>公鸡</item>
+		<item>母鸡</item>
+		<item>公牛</item>
+		<item>骆驼</item>
+		<item>毛虫</item>
+		<item>大象</item>
+		<item>狐狸</item>
+		<item>山羊</item>
+		<item>土拨鼠</item>
+		<item>老鼠</item>
+		<item>蜗牛</item>
+		<item>蜘蛛</item>
+		<item>狼</item>
+		<item>斑马</item>
+		<!-- 空 -->
+		<item>鸟类</item>
+		<item>蝙蝠</item>
+		<item>蜜蜂</item>
+		<item>蝴蝶</item>
+		<item>蜻蜓</item>
+		<item>鹰</item>
+		<item>鹦鹉</item>
+		<item>麻雀</item>
+		<item>燕子</item>
+		<item>啄木鸟</item>
+		<!-- 海 -->
+		<item>鱼类</item>
+		<item>鲸鱼</item>
+		<item>海龟</item>
+		<item>鲨鱼</item>
+		<item>蟹</item>
+		<item>海星</item>
+		<item>青蛙</item>
+		<item>海豚</item>
+		<item>鳄鱼</item>
+		<item>企鹅</item>
+		<item>蛇</item>
+    </string-array>
     <string-array name="animal">
         <!-- 陆 -->
         <item>cat</item>
