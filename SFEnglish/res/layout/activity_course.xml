@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
     android:background="@drawable/home_background"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -16,13 +17,14 @@
             android:background="@drawable/practice_back"
             android:text=""/>
         <ImageView
+            android:visibility="gone"
             android:id="@+id/ivCourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:contentDescription="@string/default_content_description"
             android:src="@drawable/title_animal_h" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <GridView
         android:id="@+id/gvObject"

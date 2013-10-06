@@ -1,6 +1,6 @@
 package sf.game.english.adapter;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import sf.game.english.ActivityPractise;
 import sf.game.english.R;
@@ -18,9 +18,9 @@ import android.widget.TextView;
 public class AdapterCourse extends SFBaseAdapter implements OnItemClickListener {
 	public static final String TAg = "AdapterCourse";
 
-	private ArrayList<CourseObject> mCourseObjectArray = null;
+	private LinkedList<CourseObject> mCourseObjectArray = null;
 
-	public AdapterCourse(TopActivity activity, ArrayList<CourseObject> courseObjectArray) {
+	public AdapterCourse(TopActivity activity, LinkedList<CourseObject> courseObjectArray) {
 		super(activity);
 		this.mCourseObjectArray = courseObjectArray;
 	}
@@ -70,6 +70,8 @@ public class AdapterCourse extends SFBaseAdapter implements OnItemClickListener 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
+		CourseObject co = this.getItem(position);
+		this.mApp.getmStorageManager().getmSelectedCourse().setmSelectedCourseObject(co);
 		this.mActivity.toActivity(ActivityPractise.class);
 	}
 

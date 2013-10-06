@@ -1,11 +1,9 @@
 package sf.game.english;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import sf.game.english.adapter.AdapterCourse;
 import sf.game.english.model.CourseObject;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.GridView;
@@ -19,7 +17,7 @@ public class ActivityCourse extends TopActivity {
 	protected GridView gvObject = null;
 
 	protected AdapterCourse mAdapterCourse = null;
-	protected ArrayList<CourseObject> mCourseObjectArray = new ArrayList<CourseObject>();
+	protected LinkedList<CourseObject> mCourseObjectArray = new LinkedList<CourseObject>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

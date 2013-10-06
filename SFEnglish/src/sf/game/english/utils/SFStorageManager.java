@@ -1,6 +1,7 @@
 package sf.game.english.utils;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import sf.game.english.SFEnglishApp;
 import sf.game.english.model.Course;
@@ -49,7 +50,7 @@ public class SFStorageManager {
 					.courseObjectArrayId(tcourse);
 			String[] courseObjectStringArray = this.mApp.getResources()
 					.getStringArray(resIdOfCourseObjectArray);
-			ArrayList<CourseObject> courseObjectArray = new ArrayList<CourseObject>();
+			LinkedList<CourseObject> courseObjectArray = new LinkedList<CourseObject>();
 			for (int cot = 0; cot < courseObjectStringArray.length; cot++) {
 				String courseObjectString = courseObjectStringArray[cot];
 				CourseObject courseObject = new CourseObject(cot,
