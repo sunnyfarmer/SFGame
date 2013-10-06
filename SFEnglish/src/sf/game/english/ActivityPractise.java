@@ -2,6 +2,8 @@ package sf.game.english;
 
 import sf.game.english.model.CourseObject;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +40,37 @@ public class ActivityPractise extends TopActivity {
 		this.ivCourseObject = (ImageView) this.findViewById(R.id.ivCourseObject);
 		this.btnListen = (Button) this.findViewById(R.id.btnListen);
 		this.btnSay = (Button) this.findViewById(R.id.btnSay);
+	}
+
+	@Override
+	protected void setListener() {
+		super.setListener();
+		this.btnBack.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+		this.ivCourseObject.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toActivity(ActivityInroduction.class);
+			}
+		});
+		this.btnListen.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		this.btnSay.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 	protected void refreshView() {

@@ -7,9 +7,8 @@ public class ActivityInroduction extends TopActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		this.setContentView(R.layout.activity_introduction);
 	    super.onCreate(savedInstanceState);
-	
-	    // TODO Auto-generated method stub
 	}
 
 }

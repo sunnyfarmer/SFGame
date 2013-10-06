@@ -19,4 +19,7 @@
     <string name="animal">动物</string>
     <string name="fruit">水果</string>
     <string name="vegetable">蔬菜</string>
+
+    <!-- 动物描述 -->
+    <string name="tiger_des">老虎是猫科动物中体 型最大的之一，也是 陆地上最强大、最凶 猛的猛兽之一。</string>
 </resources>
