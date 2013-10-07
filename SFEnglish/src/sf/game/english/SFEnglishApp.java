@@ -2,11 +2,16 @@ package sf.game.english;
 
 import java.util.Locale;
 
+import android.content.Intent;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import sf.game.english.utils.SFBitmapManager;
 import sf.game.english.utils.SFStorageManager;
 import sf.libs.activity.BaseApp;
+import sf.libs.log.SFLog;
 
 public class SFEnglishApp extends BaseApp implements OnInitListener{
 	public static final String TAG = "SFEnglishApp";
@@ -15,6 +20,8 @@ public class SFEnglishApp extends BaseApp implements OnInitListener{
 	protected SFBitmapManager mBitmapManager = null;
 
 	protected TextToSpeech mTts = null;
+	protected SpeechRecognizer mSpeechRecognizer = null;
+	protected RecognitionListener mRecognitionListener = null;
 
 	@Override
 	public void onCreate() {
@@ -59,4 +66,34 @@ public class SFEnglishApp extends BaseApp implements OnInitListener{
 		this.mTts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 	}
 
+	//初始化SpeechRecognizer
+	public void initSpeechRecognizer() {
+		this.mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+	}
+	//设置RecognitionListener
+	public void setRecognitionListener(RecognitionListener listener){
+		SFLog.d(TAG, "setRecognitionListener begin");
+		if (this.mSpeechRecognizer!=null) {
+			this.mRecognitionListener = listener;
+			this.mSpeechRecognizer.setRecognitionListener(listener);
+		}
+		SFLog.d(TAG, "setRecognitionListener end");
+	}
+	public void startSpeechRecoginze() {
+		SFLog.d(TAG, "startSpeechRecoginze begin");
+		if (this.mRecognitionListener!=null) {
+			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+	//		intent.putExtra("calling_package", "VoiceIME");
+	//		intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
+			this.mSpeechRecognizer.startListening(intent);
+			SFLog.d(TAG, "startSpeechRecoginze end");
+		}
+	}
+	public void stopSpeechRecognize() {
+		SFLog.d(TAG, "stopSpeechRecognize begin");
+		if (this.mRecognitionListener!=null) {
+			this.mSpeechRecognizer.stopListening();
+			SFLog.d(TAG, "stopSpeechRecognize end");
+		}
+	}
 }
