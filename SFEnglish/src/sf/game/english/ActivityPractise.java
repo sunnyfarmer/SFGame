@@ -23,6 +23,7 @@ public class ActivityPractise extends TopActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		this.setContentView(R.layout.activity_practice);
 	    super.onCreate(savedInstanceState);
+	    this.mApp.initTTS();
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class ActivityPractise extends TopActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				mApp.ttsSpeak(mCourseObject.getmObjectText());
 			}
 		});
 		this.btnSay.setOnClickListener(new OnClickListener() {
