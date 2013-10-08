@@ -1,6 +1,7 @@
 package sf.game.english;
 
 import sf.libs.log.SFLog;
+import sf.libs.view.listener.OnGestureListener;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +10,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class ActivityHome extends TopActivity {
 	public static final String TAG = "ActivityHome";
@@ -16,6 +18,7 @@ public class ActivityHome extends TopActivity {
 	protected Button btnPrevious = null;
 	protected Button btnNext = null;
 	protected ImageView ivCourse = null;
+	protected LinearLayout llHome = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class ActivityHome extends TopActivity {
 	@Override
 	protected void initView() {
 		super.initView();
+		this.llHome = (LinearLayout) this.findViewById(R.id.llHome);
 		this.btnPrevious = (Button) this.findViewById(R.id.btnPrevious);
 		this.ivCourse = (ImageView) this.findViewById(R.id.ivCourse);
 		this.btnNext = (Button) this.findViewById(R.id.btnNext);
@@ -84,6 +88,19 @@ public class ActivityHome extends TopActivity {
 				v.startAnimation(animation);
 			}
 		});
+		this.llHome.setOnTouchListener(new OnGestureListener(this) {
+			@Override
+			public boolean onSwipeLeft() {
+				btnNext.performClick();
+				return true;
+			}
+			@Override
+			public boolean onSwipeRight() {
+				btnPrevious.performClick();
+				return true;
+			}
+		});
+		
 	}
 	protected void refreshView() {
 		this.ivCourse.setImageBitmap(this.mApp.getmStorageManager().getmSelectedCourse().getmCourseBitmapV(this.mApp));

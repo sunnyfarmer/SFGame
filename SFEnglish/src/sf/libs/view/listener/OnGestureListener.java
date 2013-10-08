@@ -1,6 +1,5 @@
 package sf.libs.view.listener;
 
-import sf.libs.log.SFLog;
 import android.content.Context;
 import android.graphics.PointF;
 import android.view.GestureDetector.SimpleOnGestureListener;
