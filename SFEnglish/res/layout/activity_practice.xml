@@ -39,12 +39,14 @@
                     android:src="@drawable/tiger" />
 
                 <ImageView
+                    android:id="@+id/ivMask"
                     android:layout_width="@dimen/practice_course_object_pic_width"
                     android:layout_height="@dimen/practice_course_object_pic_height"
-                    android:layout_centerInParent="true"
-                    android:alpha="0.5"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0.9"
                     android:background="@android:color/black"
                     android:contentDescription="@string/default_content_description" />
+
             </RelativeLayout>
         </ScrollView>
 

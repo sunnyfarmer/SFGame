@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 public class ActivityPractise extends TopActivity implements RecognitionListener{
@@ -20,6 +21,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 	protected Button btnBack = null;
 	protected TextView tvCourseObject = null;
 	protected ImageView ivCourseObject = null;
+	protected ImageView ivMask = null;
 	protected Button btnListen = null;
 	protected Button btnSay = null;
 
@@ -36,6 +38,11 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 	@Override
 	protected void onStart() {
 		super.onStart();
+	}
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
 		this.refreshView();
 	}
 
@@ -59,6 +66,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 		this.btnBack = (Button) this.findViewById(R.id.btnBack);
 		this.tvCourseObject = (TextView) this.findViewById(R.id.tvCourseObject);
 		this.ivCourseObject = (ImageView) this.findViewById(R.id.ivCourseObject);
+		this.ivMask = (ImageView) this.findViewById(R.id.ivMask);
 		this.btnListen = (Button) this.findViewById(R.id.btnListen);
 		this.btnSay = (Button) this.findViewById(R.id.btnSay);
 	}
@@ -109,6 +117,17 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 		this.mCourseObject = this.mApp.getmStorageManager().getmSelectedCourse().getmSelectedCourseObject();
 		this.tvCourseObject.setText(this.mCourseObject.getmObjectText());
 		this.ivCourseObject.setImageBitmap(this.mCourseObject.getmObjectBitmap(this.mApp, 280, 280));
+		this.refreshMask();
+	}
+	protected void refreshMask() {
+		float height = (CourseObject.CORRECT_TIMES_TO_UNLOCK-this.mCourseObject.getmCorrectTimes()) * 
+				this.ivCourseObject.getHeight() / 
+				CourseObject.CORRECT_TIMES_TO_UNLOCK;
+		SFLog.i(TAG, "height : " + height);
+		LayoutParams params = (LayoutParams) this.ivMask.getLayoutParams();
+		params.width = this.ivCourseObject.getWidth();
+		params.height = (int)height;
+		this.ivMask.setLayoutParams(params);
 	}
 
 	@Override
@@ -150,6 +169,8 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 			SFLog.d(TAG, value + ":" + this.mCourseObject.getmObjectText());
 //			String value = results.getString(key);
 			if (value.contains(this.mCourseObject.getmObjectText())) {
+				mCourseObject.setmCorrectTimes(mCourseObject.getmCorrectTimes()+1);
+				refreshMask();
 				mApp.ttsSpeak("right");
 				break;
 			}

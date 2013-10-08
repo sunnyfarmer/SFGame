@@ -13,6 +13,8 @@ public class CourseObject {
 	private Bitmap mObjectBitmap = null;
 	private int mCorrectTimes = 0;
 
+	public static final int CORRECT_TIMES_TO_UNLOCK = 3;
+
 	public CourseObject(int index, String objectText) {
 		this.setmIndex(index);
 		this.setmObjectText(objectText);
@@ -47,6 +49,9 @@ public class CourseObject {
 
 	public void setmCorrectTimes(int mCorrectTimes) {
 		this.mCorrectTimes = mCorrectTimes;
+		if (this.mCorrectTimes>=CourseObject.CORRECT_TIMES_TO_UNLOCK) {
+			this.mCorrectTimes = CourseObject.CORRECT_TIMES_TO_UNLOCK;
+		}
 	}
 
 	public boolean isUnLocked() {
