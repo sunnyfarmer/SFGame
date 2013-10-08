@@ -108,7 +108,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 	protected void refreshView() {
 		this.mCourseObject = this.mApp.getmStorageManager().getmSelectedCourse().getmSelectedCourseObject();
 		this.tvCourseObject.setText(this.mCourseObject.getmObjectText());
-		this.ivCourseObject.setImageBitmap(this.mCourseObject.getmObjectBitmap(this.mApp));
+		this.ivCourseObject.setImageBitmap(this.mCourseObject.getmObjectBitmap(this.mApp, 280, 280));
 	}
 
 	@Override

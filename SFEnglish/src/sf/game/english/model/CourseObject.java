@@ -34,12 +34,10 @@ public class CourseObject {
 		this.mObjectText = mObjectText;
 	}
 
-	public Bitmap getmObjectBitmap(SFEnglishApp app) {
-		if (this.mObjectBitmap==null) {
-			int resId = SFResourseManager.courseObjectBitmapId(mObjectText);
-			this.mObjectBitmap = app.getmBitmapManager().getBitmap(resId, 64, 64);
+	public Bitmap getmObjectBitmap(SFEnglishApp app, int reqWidth, int reqHeight) {
+		int resId = SFResourseManager.courseObjectBitmapId(mObjectText);
+		this.mObjectBitmap = app.getmBitmapManager().getBitmap(resId, reqWidth, reqHeight);
 					//BitmapFactory.decodeResource(context.getResources(), resId);
-		}
 		return mObjectBitmap;
 	}
 

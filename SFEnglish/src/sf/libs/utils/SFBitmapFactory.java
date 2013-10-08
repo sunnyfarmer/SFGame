@@ -3,6 +3,7 @@ package sf.libs.utils;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Set;
@@ -31,11 +32,17 @@ public class SFBitmapFactory<T> {
 	 */
 	private void clearBitmap() {
 		//每次清理一半
+		SFLog.i(TAG, "clearBitmap... > " + bitmapBytesCount + " ? " + MAX_BITMAP_BYTES_COUNT);
 		if (bitmapBytesCount >= MAX_BITMAP_BYTES_COUNT) {
+			SFLog.i(TAG, "clearBitmap.begin.........");
 			int bitmapCount = bitmapArray.size();
 			Set<T> keyset = bitmapArray.keySet();
-			int cot = 0;
+			ArrayList<T> keyList = new ArrayList<T>();
 			for (T t : keyset) {
+				keyList.add(t);
+			}
+			int cot = 0;
+			for (T t : keyList) {
 				Bitmap bitmap = bitmapArray.get(t);
 				bitmapArray.remove(t);
 				bitmap.recycle();
@@ -44,33 +51,43 @@ public class SFBitmapFactory<T> {
 					break;
 				}
 			}
+			this.updateBitmapBytesCount();
 		}
 	}
 	private static void addBitmapBytes(Bitmap bitmap) {
 		long bytesCount = bitmapBytesCount(bitmap);
 		bitmapBytesCount += bytesCount;
+		SFLog.d(TAG, bytesCount + ">>>");
 	}
-	@SuppressWarnings("unchecked")
+	private void updateBitmapBytesCount() {
+		Set<T> keyArray = bitmapArray.keySet();
+		bitmapBytesCount = 0;
+		for (T t : keyArray) {
+			Bitmap bm = bitmapArray.get(t);
+			long bytesCount = bitmapBytesCount(bm);
+			bitmapBytesCount += bytesCount;
+		}
+	}
 	protected Bitmap getBitmapFromArray(T t) {
 		Bitmap bitmap = bitmapArray.get(t);
 		if (bitmap!=null) {
 			//将刚取过的图片放在顶端,最后才释放
 			bitmapArray.remove(t);
 			bitmapArray.put(t, bitmap);
-			printKeySet((Set<Object>) bitmapArray.keySet());
 		}
 		return bitmap;
 	}
-	private static void printKeySet(Set<Object> keyset) {
-		String text = "";
-		for (Object object : keyset) {
-			text += object.toString()+",";
-		}
-		SFLog.d(TAG, text);
-	}
+//	private static void printKeySet(Set<Object> keyset) {
+//		String text = "";
+//		for (Object object : keyset) {
+//			text += object.toString()+",";
+//		}
+//		SFLog.d(TAG, text);
+//	}
 	protected void putBitmapIntoArray(T t, Bitmap bitmap) {
 		clearBitmap();
 		bitmapArray.put(t, bitmap);
+		SFLog.d(TAG, "<<< " + t);
 		addBitmapBytes(bitmap);
 	}
 
@@ -101,30 +118,6 @@ public class SFBitmapFactory<T> {
 		String filename = String.format(Locale.US, "%d.png", cargoId);
 		app.deleteFile(filename);
 	}
-//	/**
-//	 * 获得Cargo的Bitmap
-//	 * @param cargoId
-//	 * @param app
-//	 * @return
-//	 */
-//	public Bitmap getBitmap(T t, BaseApp app) {
-//		Bitmap bitmap = null;
-//		String filename = String.format(Locale.US, "%d.png", cargoId);
-//		try {
-//			bitmap = getBitmapFromArray(cargoId);
-//			if (bitmap==null) {
-//				FileInputStream fis = app.openFileInput(filename);
-//				bitmap = BitmapFactory.decodeStream(fis);
-//				putBitmapIntoArray(cargoId, bitmap);
-//			}
-//		} catch (FileNotFoundException e) {
-//			bitmap = BitmapFactory.decodeResource(app.getResources(), R.drawable.ic_launcher);
-//			SFLog.e(TAG, "file not exist : "+filename);
-//		} catch (Exception e) {
-//			SFLog.e(TAG, "decode bitmap error : "+cargoId);
-//		}
-//		return bitmap;
-//	}
 
 	/**
 	 * 计算Bitmap所占内存
@@ -146,10 +139,11 @@ public class SFBitmapFactory<T> {
 	    // First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
-		BitmapFactory.decodeResource(res, resId);
+		BitmapFactory.decodeResource(res, resId, options);
 
 	    // Calculate inSampleSize
 		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+		SFLog.i(TAG, "inSampleSize : " + options.inSampleSize);
 
 	    // Decode bitmap with inSampleSize set
 		options.inJustDecodeBounds = false;
@@ -188,6 +182,7 @@ public class SFBitmapFactory<T> {
 	    final int width = options.outWidth;
 	    int inSampleSize = 1;
 
+	    SFLog.i(TAG, String.format("req (%d,%d), fact (%d,%d)", reqWidth, reqHeight, width, height));
 	    if (height > reqHeight || width > reqWidth) {
 	        // Calculate ratios of height and width to requested height and width
 	        final int heightRatio = Math.round((float) height / (float) reqHeight);
