@@ -83,8 +83,8 @@ public class SFEnglishApp extends BaseApp implements OnInitListener{
 		SFLog.d(TAG, "startSpeechRecoginze begin");
 		if (this.mRecognitionListener!=null) {
 			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-	//		intent.putExtra("calling_package", "VoiceIME");
-	//		intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
+			intent.putExtra("calling_package", "VoiceIME");
+			intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
 			this.mSpeechRecognizer.startListening(intent);
 			SFLog.d(TAG, "startSpeechRecoginze end");
 		}

@@ -85,13 +85,6 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 				mApp.ttsSpeak(mCourseObject.getmObjectText());
 			}
 		});
-//		this.btnSay.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				mApp.startSpeechRecoginze();
-//			}
-//		});
 		this.btnSay.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -123,7 +116,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 		SFLog.d(TAG, "onReadyForSpeech");
 		Set<String> keyset = params.keySet();
 		for (String key : keyset) {
-			String value = params.getString(key);
+			String value = params.get(key).toString();
 			SFLog.d(TAG, value);
 		}
 	}
@@ -152,9 +145,11 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 		SFLog.d(TAG, "onResults");
 		Set<String> keyset = results.keySet();
 		for (String key : keyset) {
-			String value = results.getString(key);
-			if (value.equals(this.mCourseObject.getmObjectText())) {
-				SFLog.d(TAG, value);
+			Object obj = results.get(key);
+			String value = results.get(key).toString();
+			SFLog.d(TAG, value + ":" + this.mCourseObject.getmObjectText());
+//			String value = results.getString(key);
+			if (value.contains(this.mCourseObject.getmObjectText())) {
 				mApp.ttsSpeak("right");
 				break;
 			}
@@ -165,7 +160,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 		SFLog.d(TAG, "onPartialResults");
 		Set<String> keyset = partialResults.keySet();
 		for (String key : keyset) {
-			String value = partialResults.getString(key);
+			String value = partialResults.get(key).toString();
 			SFLog.d(TAG, value);
 		}		
 	}
