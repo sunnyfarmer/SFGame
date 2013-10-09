@@ -21,6 +21,7 @@
 
         <ImageView
             android:id="@+id/ivLifeA"
+            android:visibility="invisible"
             android:layout_width="@dimen/practice_course_object_pic_width"
             android:layout_height="@dimen/practice_course_object_pic_height"
             android:background="@android:color/white"
@@ -29,6 +30,7 @@
 
         <ImageView
             android:id="@+id/ivLifeB"
+            android:visibility="visible"
             android:layout_width="@dimen/practice_course_object_pic_width"
             android:layout_height="@dimen/practice_course_object_pic_height"
             android:background="@android:color/white"
