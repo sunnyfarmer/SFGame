@@ -110,11 +110,46 @@ public class SFResourseManager {
 	 * @param courseObjectName
 	 * @return
 	 */
-	public static ArrayList<String> courseObjectLifeImageFileNames(String courseObjectName) {
-		return null;
+	public static ArrayList<Integer> courseObjectLifeImageFileNames(String courseObjectName) {
+		ArrayList<Integer> resIdArray = new ArrayList<Integer>();
+		for (int cot = 1; true; cot++) {
+			int resId = 0;
+			Class<R.drawable> classObject = R.drawable.class;
+			try {
+				String fieldName = courseObjectName + "_" + cot;
+				Field field = classObject.getField(fieldName);
+				Object courseObjectId = field.get(classObject);
+				resId = Integer.valueOf(courseObjectId.toString());
+			} catch (NoSuchFieldException e) {
+				SFLog.e(TAG, e.getMessage(), e);
+				break;
+			} catch (IllegalArgumentException e) {
+				SFLog.e(TAG, e.getMessage(), e);
+				break;
+			} catch (IllegalAccessException e) {
+				SFLog.e(TAG, e.getMessage(), e);
+				break;
+			}
+			resIdArray.add(resId);
+		}
+		return resIdArray;
 	}
 	//COURSE CONTENT INTRODUCTION
-	public static String courseObjectDescription(String courseObjectName) {
-		return "Description";
+	public static int courseObjectDescription(String courseObjectName) {
+		int resId = 0;
+		Class<R.string> classObject = R.string.class;
+		try {
+			String fieldName = courseObjectName + "_des";
+			Field field = classObject.getField(fieldName);
+			Object courseObjectId = field.get(classObject);
+			resId = Integer.valueOf(courseObjectId.toString());
+		} catch (NoSuchFieldException e) {
+			SFLog.e(TAG, e.getMessage(), e);
+		} catch (IllegalArgumentException e) {
+			SFLog.e(TAG, e.getMessage(), e);
+		} catch (IllegalAccessException e) {
+			SFLog.e(TAG, e.getMessage(), e);
+		}
+		return resId;
 	}
 }

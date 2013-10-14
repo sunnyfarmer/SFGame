@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cat_des">猫</string>
+    <string name="dog_des">狗</string>
+    <string name="monkey_des">猴子</string>
+    <string name="panda_des">熊猫</string>
+	<string name="pig_des">猪</string>
+	<string name="lion_des">狮子</string>
+	<string name="tiger_des">老虎</string>
+	<string name="ant_des">蚂蚁</string>
+	<string name="bear_des">熊</string>
+	<string name="duck_des">鸭子</string>
+	<string name="rabbit_des">兔子</string>
+	<string name="sheep_des">绵羊</string>
+	<string name="cock_des">公鸡</string>
+	<string name="hen_des">母鸡</string>
+	<string name="bull_des">公牛</string>
+	<string name="camel_des">骆驼</string>
+	<string name="caterpillar_des">毛虫</string>
+	<string name="elephant_des">大象</string>
+	<string name="fox_des">狐狸</string>
+	<string name="goat_des">山羊</string>
+	<string name="marmot_des">土拨鼠</string>
+	<string name="mouse_des">老鼠</string>
+	<string name="snail_des">蜗牛</string>
+	<string name="spider_des">蜘蛛</string>
+	<string name="wolf_des">狼</string>
+	<string name="zebra_des">斑马</string>
+		<!-- 空 -->
+	<string name="bird_des">鸟类</string>
+	<string name="bat_des">蝙蝠</string>
+	<string name="bee_des">蜜蜂</string>
+	<string name="butterfly_des">蝴蝶</string>
+	<string name="dragonfly_des">蜻蜓</string>
+	<string name="eagle_des">鹰</string>
+	<string name="parrot_des">鹦鹉</string>
+	<string name="sparrow_des">麻雀</string>
+	<string name="swallow_des">燕子</string>
+	<string name="woodpecker_des">啄木鸟</string>
+		<!-- 海 -->
+	<string name="fish_des">鱼类</string>
+	<string name="whale_des">鲸鱼</string>
+	<string name="turtle_des">海龟</string>
+	<string name="shark_des">鲨鱼</string>
+	<string name="crab_des">蟹</string>
+	<string name="starfish_des">海星</string>
+	<string name="frog_des">青蛙</string>
+	<string name="dolphin_des">海豚</string>
+	<string name="crocodile_des">鳄鱼</string>
+	<string name="penguin_des">企鹅</string>
+	<string name="snake_des">蛇</string>
+</resources>

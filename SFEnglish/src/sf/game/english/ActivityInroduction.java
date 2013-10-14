@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import sf.game.english.model.CourseObject;
+import sf.game.english.utils.SFResourseManager;
 import sf.libs.log.SFLog;
 
 import android.os.Bundle;
@@ -28,6 +30,8 @@ public class ActivityInroduction extends TopActivity {
 	private ArrayList<Integer> mResIdArray = new ArrayList<Integer>();
 	private int mDisplayingIndex = 0;
 
+	protected CourseObject mCourseObject = null;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		this.setContentView(R.layout.activity_introduction);
@@ -45,6 +49,8 @@ public class ActivityInroduction extends TopActivity {
 	protected void onResume() {
 		super.onResume();
 
+		this.refreshView();
+
 		Timer timer = new Timer();
 		TimerTask tt = new TimerTask() {
 			@Override
@@ -60,9 +66,6 @@ public class ActivityInroduction extends TopActivity {
 	protected void initData() {
 		super.initData();
 		this.mResIdArray = new ArrayList<Integer>();
-		this.mResIdArray.add(R.drawable.tiger);
-		this.mResIdArray.add(R.drawable.bear);
-		this.mResIdArray.add(R.drawable.bat);
 	}
 
 	@Override
@@ -83,6 +86,15 @@ public class ActivityInroduction extends TopActivity {
 				finish();
 			}
 		});
+	}
+
+	private void refreshView() {
+		this.mCourseObject = this.mApp.getmStorageManager().getmSelectedCourse().getmSelectedCourseObject();
+
+		String description = this.getString(SFResourseManager.courseObjectDescription(this.mCourseObject.getmObjectText()));
+		this.tvDescription.setText(description);
+
+		this.mResIdArray = SFResourseManager.courseObjectLifeImageFileNames(this.mCourseObject.getmObjectText());
 	}
 
 	private void switchImageView() {
