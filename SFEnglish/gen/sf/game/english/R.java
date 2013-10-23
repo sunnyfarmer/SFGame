@@ -119,12 +119,12 @@ public final class R {
         public static final int zebra=0x7f02004d;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0016;
+        public static final int action_settings=0x7f0a0019;
         public static final int btnBack=0x7f0a0000;
-        public static final int btnListen=0x7f0a0012;
+        public static final int btnListen=0x7f0a0015;
         public static final int btnNext=0x7f0a0005;
         public static final int btnPrevious=0x7f0a0004;
-        public static final int btnSay=0x7f0a0013;
+        public static final int btnSay=0x7f0a0016;
         public static final int gvObject=0x7f0a0002;
         public static final int ivCourse=0x7f0a0001;
         public static final int ivCourseObject=0x7f0a000e;
@@ -136,11 +136,14 @@ public final class R {
         public static final int ivNext=0x7f0a0009;
         public static final int ivPrevious=0x7f0a0008;
         public static final int llHome=0x7f0a0003;
+        public static final int rbUK=0x7f0a0014;
+        public static final int rbUS=0x7f0a0013;
+        public static final int rgPronunciation=0x7f0a0012;
         public static final int svPic=0x7f0a000d;
-        public static final int tvCourse=0x7f0a0015;
-        public static final int tvCourseChinese=0x7f0a0014;
-        public static final int tvCourseObject=0x7f0a0010;
-        public static final int tvCourseObjectChinese=0x7f0a0011;
+        public static final int tvCourse=0x7f0a0018;
+        public static final int tvCourseChinese=0x7f0a0017;
+        public static final int tvCourseObject=0x7f0a0011;
+        public static final int tvCourseObjectChinese=0x7f0a0010;
         public static final int tvDescription=0x7f0a000c;
     }
     public static final class layout {
@@ -157,8 +160,8 @@ public final class R {
         public static final int action_settings=0x7f050030;
         /**  分类 
          */
-        public static final int alphet=0x7f05003a;
-        public static final int animal=0x7f05003c;
+        public static final int alphet=0x7f05003c;
+        public static final int animal=0x7f05003e;
         public static final int ant_des=0x7f050007;
         public static final int app_name=0x7f05002f;
         public static final int back=0x7f050037;
@@ -175,7 +178,7 @@ public final class R {
         public static final int caterpillar_des=0x7f050010;
         public static final int charge_tips=0x7f050035;
         public static final int cock_des=0x7f05000c;
-        public static final int color=0x7f05003b;
+        public static final int color=0x7f05003d;
         public static final int confirm=0x7f050032;
         public static final int crab_des=0x7f050028;
         public static final int crocodile_des=0x7f05002c;
@@ -191,7 +194,7 @@ public final class R {
         public static final int fish_des=0x7f050024;
         public static final int fox_des=0x7f050012;
         public static final int frog_des=0x7f05002a;
-        public static final int fruit=0x7f05003d;
+        public static final int fruit=0x7f05003f;
         public static final int goat_des=0x7f050013;
         public static final int hello_world=0x7f050031;
         public static final int hen_des=0x7f05000d;
@@ -206,6 +209,8 @@ public final class R {
         public static final int penguin_des=0x7f05002d;
         public static final int pig_des=0x7f050004;
         public static final int previous=0x7f050033;
+        public static final int pronunciation_uk=0x7f05003b;
+        public static final int pronunciation_us=0x7f05003a;
         public static final int rabbit_des=0x7f05000a;
         public static final int say=0x7f050039;
         public static final int shark_des=0x7f050027;
@@ -218,7 +223,7 @@ public final class R {
         public static final int swallow_des=0x7f050022;
         public static final int tiger_des=0x7f050006;
         public static final int turtle_des=0x7f050026;
-        public static final int vegetable=0x7f05003e;
+        public static final int vegetable=0x7f050040;
         public static final int whale_des=0x7f050025;
         public static final int wolf_des=0x7f050018;
         public static final int woodpecker_des=0x7f050023;

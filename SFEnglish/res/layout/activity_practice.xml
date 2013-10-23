@@ -82,6 +82,26 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
+        <RadioGroup 
+            android:id="@+id/rgPronunciation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbUS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pronunciation_us" />
+			<RadioButton
+                android:id="@+id/rbUK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pronunciation_uk" />
+			            			            
+        </RadioGroup>
+
         <Button
             android:id="@+id/btnListen"
             android:layout_width="wrap_content"

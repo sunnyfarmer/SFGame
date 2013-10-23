@@ -13,6 +13,8 @@
     <string name="listen">听</string>
     <string name="say">说</string>
 
+    <string name="pronunciation_us">美音</string>
+    <string name="pronunciation_uk">英音</string>
     <!-- 分类 -->
     <string name="alphet">字母</string>
     <string name="color">颜色</string>
