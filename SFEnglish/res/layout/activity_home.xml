@@ -58,7 +58,7 @@
 
 
         <ImageView
-            android:id="@+id/ivCurrent"
+            android:id="@+id/ivCenter"
             android:layout_width="192dp"
             android:layout_height="192dp"
             android:layout_alignParentBottom="true"
@@ -66,7 +66,7 @@
             android:src="@drawable/bear"
             android:contentDescription="@string/default_content_description" />
        <ImageView
-            android:id="@+id/ivPrevious"
+            android:id="@+id/ivLeft"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_alignParentBottom="true"
@@ -74,7 +74,7 @@
             android:src="@drawable/bear"
             android:contentDescription="@string/default_content_description" />
 		<ImageView
-            android:id="@+id/ivNext"
+            android:id="@+id/ivRight"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_alignParentBottom="true"

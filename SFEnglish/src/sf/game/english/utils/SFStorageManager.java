@@ -7,6 +7,7 @@ import sf.game.english.SFEnglishApp;
 import sf.game.english.model.Course;
 import sf.game.english.model.CourseObject;
 import sf.game.english.utils.SFResourseManager.TCOURSE;
+import sf.libs.log.SFLog;
 
 public class SFStorageManager {
 	public static final String TAG = "SFStorageManager";
@@ -64,6 +65,9 @@ public class SFStorageManager {
 		return courseArray;
 	}
 	public Course getmSelectedCourse() {
+		if (this.mSelectedCourse==null) {
+			this.mSelectedCourse = this.getCourseArray().get(0);
+		}
 		return mSelectedCourse;
 	}
 	public boolean moveToNextCourse() {

@@ -1,5 +1,6 @@
 package sf.game.english;
 
+import sf.game.english.model.CourseObject;
 import sf.libs.log.SFLog;
 import sf.libs.view.listener.OnGestureListener;
 import android.os.Bundle;
@@ -19,6 +20,9 @@ public class ActivityHome extends TopActivity {
 	protected Button btnNext = null;
 	protected ImageView ivCourse = null;
 	protected LinearLayout llHome = null;
+	protected ImageView ivLeft = null;
+	protected ImageView ivCenter = null;
+	protected ImageView ivRight = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,11 @@ public class ActivityHome extends TopActivity {
 		super.onCreate(savedInstanceState);
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		this.refreshView();
+	}
 	@Override
 	protected void initData() {
 		// TODO Auto-generated method stub
@@ -38,6 +47,9 @@ public class ActivityHome extends TopActivity {
 		this.btnPrevious = (Button) this.findViewById(R.id.btnPrevious);
 		this.ivCourse = (ImageView) this.findViewById(R.id.ivCourse);
 		this.btnNext = (Button) this.findViewById(R.id.btnNext);
+		this.ivLeft = (ImageView) this.findViewById(R.id.ivLeft);
+		this.ivCenter = (ImageView) this.findViewById(R.id.ivCenter);
+		this.ivRight = (ImageView) this.findViewById(R.id.ivRight);
 	}
 	@Override
 	protected void setListener() {
@@ -100,9 +112,18 @@ public class ActivityHome extends TopActivity {
 				return true;
 			}
 		});
-		
 	}
 	protected void refreshView() {
 		this.ivCourse.setImageBitmap(this.mApp.getmStorageManager().getmSelectedCourse().getmCourseBitmapV(this.mApp));
+		CourseObject courseObject = this.mApp.getmStorageManager().getmSelectedCourse().getmSelectedCourseObject();
+		if (courseObject != null) {
+			this.ivLeft.setImageBitmap(courseObject.getmObjectBitmap(mApp, 64, 64));
+			this.ivCenter.setImageBitmap(courseObject.getmObjectBitmap(mApp, 192, 192));
+			this.ivRight.setImageBitmap(courseObject.getmObjectBitmap(mApp, 64, 64));
+		} else {
+			this.ivLeft.setImageBitmap(null);
+			this.ivCenter.setImageBitmap(null);
+			this.ivRight.setImageBitmap(null);
+		}
 	}
 }

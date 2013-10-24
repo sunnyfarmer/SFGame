@@ -83,6 +83,9 @@ public class Course {
 	}
 
 	public CourseObject getmSelectedCourseObject() {
+		if (this.mSelectedCourseObject==null && this.getmCourseObjectArray()!=null && this.getmCourseObjectArray().size()>0) {
+			this.mSelectedCourseObject = this.getmCourseObjectArray().getFirst();
+		}
 		return mSelectedCourseObject;
 	}
 

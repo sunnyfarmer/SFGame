@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import sf.game.english.adapter.AdapterCourse;
 import sf.game.english.model.CourseObject;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -50,6 +52,12 @@ public class ActivityCourse extends TopActivity {
 	@Override
 	protected void setListener() {
 		super.setListener();
+		this.btnBack.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 	}
 
 	private void refreshData() {
