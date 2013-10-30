@@ -54,6 +54,7 @@ public class AdapterCourse extends SFBaseAdapter implements OnItemClickListener 
 			vhAdapterCourse = new VHAdapterCourse();
 			vhAdapterCourse.ivCourse = (ImageView) convertView.findViewById(R.id.ivCourse);
 			vhAdapterCourse.tvCourse = (TextView) convertView.findViewById(R.id.tvCourse);
+			vhAdapterCourse.tvCourseChinese = (TextView) convertView.findViewById(R.id.tvCourseChinese);
 
 			convertView.setTag(vhAdapterCourse);
 		} else {
@@ -63,6 +64,7 @@ public class AdapterCourse extends SFBaseAdapter implements OnItemClickListener 
 		final CourseObject courseObject = this.getItem(position);
 		vhAdapterCourse.ivCourse.setImageBitmap(courseObject.getmObjectBitmap(this.mApp, 64, 64));
 		vhAdapterCourse.tvCourse.setText(courseObject.getmObjectText());
+		vhAdapterCourse.tvCourseChinese.setText(courseObject.getmObjectChinese());
 
 		return convertView;
 	}

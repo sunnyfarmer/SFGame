@@ -10,14 +10,16 @@ public class CourseObject {
 
 	private int mIndex = 0;
 	private String mObjectText = null;
+	private String mObjectChinese = null;
 	private Bitmap mObjectBitmap = null;
 	private int mCorrectTimes = 0;
 
 	public static final int CORRECT_TIMES_TO_UNLOCK = 3;
 
-	public CourseObject(int index, String objectText) {
+	public CourseObject(int index, String objectText, String objectChinese) {
 		this.setmIndex(index);
 		this.setmObjectText(objectText);
+		this.setmObjectChinese(objectChinese);
 	}
 
 	public int getmIndex() {
@@ -34,6 +36,14 @@ public class CourseObject {
 
 	public void setmObjectText(String mObjectText) {
 		this.mObjectText = mObjectText;
+	}
+
+	public String getmObjectChinese() {
+		return mObjectChinese;
+	}
+
+	public void setmObjectChinese(String mObjectChinese) {
+		this.mObjectChinese = mObjectChinese;
 	}
 
 	public Bitmap getmObjectBitmap(SFEnglishApp app, int reqWidth, int reqHeight) {

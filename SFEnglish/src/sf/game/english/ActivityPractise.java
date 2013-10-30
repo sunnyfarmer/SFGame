@@ -20,6 +20,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 
 	protected Button btnBack = null;
 	protected TextView tvCourseObject = null;
+	protected TextView tvCourseObjectChinese = null;
 	protected ImageView ivCourseObject = null;
 	protected ImageView ivMask = null;
 	protected Button btnListen = null;
@@ -65,6 +66,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 
 		this.btnBack = (Button) this.findViewById(R.id.btnBack);
 		this.tvCourseObject = (TextView) this.findViewById(R.id.tvCourseObject);
+		this.tvCourseObjectChinese = (TextView) this.findViewById(R.id.tvCourseObjectChinese);
 		this.ivCourseObject = (ImageView) this.findViewById(R.id.ivCourseObject);
 		this.ivMask = (ImageView) this.findViewById(R.id.ivMask);
 		this.btnListen = (Button) this.findViewById(R.id.btnListen);
@@ -116,6 +118,7 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 	protected void refreshView() {
 		this.mCourseObject = this.mApp.getmStorageManager().getmSelectedCourse().getmSelectedCourseObject();
 		this.tvCourseObject.setText(this.mCourseObject.getmObjectText());
+		this.tvCourseObjectChinese.setText(this.mCourseObject.getmObjectChinese());
 		this.ivCourseObject.setImageBitmap(this.mCourseObject.getmObjectBitmap(this.mApp, 280, 280));
 		this.refreshMask();
 	}

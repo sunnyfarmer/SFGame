@@ -8,4 +8,5 @@ public class VHAdapterCourse {
 
 	public ImageView ivCourse = null;
 	public TextView tvCourse = null;
+	public TextView tvCourseChinese = null;
 }

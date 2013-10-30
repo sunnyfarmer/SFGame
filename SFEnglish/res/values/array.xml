@@ -105,6 +105,34 @@
 		<item>snake</item>
     </string-array>
 
+    <string-array name="fruit_chinese">
+        <item>西红柿</item>
+		<item>菠萝</item>
+		<item>西瓜</item>
+		<item>香蕉</item>
+		<item>柚子</item>
+		<item>橙子</item>
+		<item>苹果</item>
+		<item>柠檬</item>
+		<item>樱桃</item>
+		<item>桃子</item>
+		<item>梨子</item>
+		<item>椰子</item>
+		<item>草莓</item>
+		<item>蓝莓</item>
+		<item>黑莓</item>
+		<item>葡萄</item>
+		<item>芒果</item>
+		<item>木瓜</item>
+		<item>榴莲</item>
+		<item>荔枝</item>
+		<item>青梅</item>
+		<item>山楂</item>
+		<item>李子</item>
+		<item>桂圆，龙眼</item>
+		<item>杨桃</item>
+		<item>枇杷</item>
+    </string-array>
     <string-array name="fruit">
         <item>tomato</item>
 		<item>pineapple</item>
@@ -133,9 +161,15 @@
 		<item>starfruit</item>
 		<item>loquat</item>
     </string-array>
+    <string-array name="alphet_chinese">
+    </string-array>
     <string-array name="alphet">
     </string-array>
+    <string-array name="vegetable_chinese">
+    </string-array>
     <string-array name="vegetable">
+    </string-array>
+    <string-array name="color_chinese">
     </string-array>
     <string-array name="color">
     </string-array>

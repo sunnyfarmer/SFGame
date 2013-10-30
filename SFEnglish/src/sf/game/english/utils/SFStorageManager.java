@@ -47,15 +47,16 @@ public class SFStorageManager {
 			String courseString = this.mApp.getString(resIdOfCourseString);
 			Course course = new Course(tcourse, courseString);
 
-			int resIdOfCourseObjectArray = SFResourseManager
-					.courseObjectArrayId(tcourse);
-			String[] courseObjectStringArray = this.mApp.getResources()
-					.getStringArray(resIdOfCourseObjectArray);
+			int resIdOfCourseObjectArray = SFResourseManager.courseObjectArrayId(tcourse);
+			int resIdOfCourseObjectChineseArray = SFResourseManager.courseObjectChineseArrayId(tcourse);
+			String[] courseObjectStringArray = this.mApp.getResources().getStringArray(resIdOfCourseObjectArray);
+			String[] courseObjectChineseStringArray = this.mApp.getResources().getStringArray(resIdOfCourseObjectChineseArray);
 			LinkedList<CourseObject> courseObjectArray = new LinkedList<CourseObject>();
 			for (int cot = 0; cot < courseObjectStringArray.length; cot++) {
 				String courseObjectString = courseObjectStringArray[cot];
+				String courseObjectChineseString = courseObjectChineseStringArray[cot];
 				CourseObject courseObject = new CourseObject(cot,
-						courseObjectString);
+						courseObjectString, courseObjectChineseString);
 				courseObjectArray.add(courseObject);
 			}
 			course.setmCourseObjectArray(courseObjectArray);

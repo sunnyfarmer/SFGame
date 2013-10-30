@@ -9,6 +9,9 @@ public class SFResourseManager {
 	public static final String TAG = "ResourseManager";
 
 	//COURSE
+	/**
+	 * 课程分类
+	 */
 	public static enum TCOURSE {
 		COURSE_ALPHET,
 		COURSE_COLOR,
@@ -16,6 +19,11 @@ public class SFResourseManager {
 		COURSE_FRUIT,
 		COURSE_VEGETABLE
 	};
+	/**
+	 * 课程中文名
+	 * @param course
+	 * @return
+	 */
 	public static int courseStringId(TCOURSE course) {
 		int resId = 0;
 		switch (course) {
@@ -39,6 +47,12 @@ public class SFResourseManager {
 		}
 		return resId;
 	}
+	/**
+	 * 课程图标
+	 * @param course
+	 * @param isVertical
+	 * @return
+	 */
 	public static int courseImageId(TCOURSE course, boolean isVertical) {
 		int resId = 0;
 		switch (course) {
@@ -64,6 +78,11 @@ public class SFResourseManager {
 	}
 
 	//COURSE OBJECT
+	/**
+	 * 课程单词库
+	 * @param course
+	 * @return
+	 */
 	public static int courseObjectArrayId(TCOURSE course) {
 		int resId = 0;
 		switch (course) {
@@ -87,6 +106,39 @@ public class SFResourseManager {
 		}
 		return resId;
 	}
+	/**
+	 * 课程单词中文库
+	 * @param course
+	 * @return
+	 */
+	public static int courseObjectChineseArrayId(TCOURSE course) {
+		int resId = 0;
+		switch (course) {
+		case COURSE_ALPHET:
+			resId = R.array.alphet_chinese;
+			break;
+		case COURSE_ANIMAL:
+			resId = R.array.animal_chinese;
+			break;
+		case COURSE_COLOR:
+			resId = R.array.color_chinese;
+			break;
+		case COURSE_FRUIT:
+			resId = R.array.fruit_chinese;
+			break;
+		case COURSE_VEGETABLE:
+			resId = R.array.vegetable_chinese;
+			break;
+		default:
+			break;
+		}
+		return resId;
+	}
+	/**
+	 * 
+	 * @param courseObjectName
+	 * @return
+	 */
 	public static int courseObjectBitmapId(String courseObjectName) {
 		int resId = 0;
 		Class<R.drawable> classObject = R.drawable.class;
