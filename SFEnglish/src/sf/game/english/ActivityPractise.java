@@ -1,5 +1,6 @@
 package sf.game.english;
 
+import java.util.Locale;
 import java.util.Set;
 
 import sf.game.english.model.CourseObject;
@@ -12,6 +13,9 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
@@ -25,6 +29,9 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 	protected ImageView ivMask = null;
 	protected Button btnListen = null;
 	protected Button btnSay = null;
+	protected RadioGroup rgPronunciation = null;
+	protected RadioButton rbUS = null;
+	protected RadioButton rbUK = null;
 
 	protected CourseObject mCourseObject = null;
 
@@ -49,13 +56,11 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		this.mApp.setRecognitionListener(this);
 	}
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		this.mApp.setRecognitionListener(null);
 	}
@@ -71,6 +76,10 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 		this.ivMask = (ImageView) this.findViewById(R.id.ivMask);
 		this.btnListen = (Button) this.findViewById(R.id.btnListen);
 		this.btnSay = (Button) this.findViewById(R.id.btnSay);
+
+		this.rgPronunciation = (RadioGroup) this.findViewById(R.id.rgPronunciation);
+		this.rbUS = (RadioButton) this.findViewById(R.id.rbUS);
+		this.rbUK = (RadioButton) this.findViewById(R.id.rbUK);
 	}
 
 	@Override
@@ -91,14 +100,12 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 		this.btnListen.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				mApp.ttsSpeak(mCourseObject.getmObjectText());
 			}
 		});
 		this.btnSay.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
 				int action = event.getAction();
 				switch(action) {
 				case MotionEvent.ACTION_DOWN:
@@ -113,9 +120,26 @@ public class ActivityPractise extends TopActivity implements RecognitionListener
 				return false;
 			}
 		});
+		this.rgPronunciation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				SFLog.d(TAG, "check change:" + checkedId + " & " + R.id.rbUS + " & " + R.id.rbUK);
+				if (checkedId == R.id.rbUS) {
+					if (rbUS.isPressed()) {
+						mApp.setTTSLanguage(Locale.US);
+					}
+				} else if (checkedId == R.id.rbUK) {
+					if (rbUK.isPressed()) {
+						mApp.setTTSLanguage(Locale.UK);
+					}
+				}
+			}
+		});
 	}
 
 	protected void refreshView() {
+		this.rgPronunciation.check(R.id.rbUS);
+
 		this.mCourseObject = this.mApp.getmStorageManager().getmSelectedCourse().getmSelectedCourseObject();
 		this.tvCourseObject.setText(this.mCourseObject.getmObjectText());
 		this.tvCourseObjectChinese.setText(this.mCourseObject.getmObjectChinese());

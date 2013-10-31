@@ -40,7 +40,9 @@ public class SFEnglishApp extends BaseApp implements OnInitListener{
 
 	//初始化TTS引擎
 	public void initTTS() {
-		mTts = new TextToSpeech(this, this);
+		if (this.mTts==null) {
+			mTts = new TextToSpeech(this, this);
+		}
 	}
 	@Override
 	public void onInit(int status) {
